@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import "../asset/arizaPage.scss"
-import Navbar from "../components/Navbar";
-
-import Footer from "../components/footer";
 import axios from "axios";
 import {PlusOutlined} from '@ant-design/icons';
 import {Button, Form, Input, Modal, Space} from 'antd';
@@ -169,9 +166,6 @@ function Ariza(props) {
 
     return (
         <>
-            <Navbar/>
-
-
             <div className='container ArizaPage'>
                 <Modal title={"Sababni Tanlang"} open={isModalVisible}
                        onOk={handleOk} onCancel={handleCancel}>
@@ -258,7 +252,6 @@ function Ariza(props) {
                 </div>
 
             </div>
-            <Footer/>
 
         </>
     );

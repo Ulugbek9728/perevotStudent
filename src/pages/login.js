@@ -7,8 +7,7 @@ import {ApiName1} from "../APIname1";
 import axios from "axios";
 import "../asset/login.scss"
 import {useNavigate} from "react-router";
-import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
+
 import {toast} from "react-toastify";
 import {Button, Form, Input} from 'antd';
 
@@ -93,7 +92,6 @@ function Login(props) {
 
     return (
         <>
-            <Navbar/>
 
             <div className="container loginPage">
                 <div className="row">
@@ -200,8 +198,6 @@ function Login(props) {
                 </div>
 
             </div>
-            <Footer/>
-
         </>
     );
 }

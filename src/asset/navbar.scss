@@ -32,795 +32,259 @@ $mainColor: #418C61;
   }
 }
 
-.App {
-  background: linear-gradient(180deg, #479769 0%, #7FAC92 100%);
-}
-
-.navbar {
-  width: 1280px;
-  height: 141px;
-  background: #EAEAEA;
-  padding: 0 89px;
-
-  .left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-
-    img {
-      width: 96px;
-      height: 96px;
-    }
-
-    .title {
-      font-weight: 600;
-      font-size: 22px;
-      line-height: 27px;
-      margin-left: 28px;
-    }
-  }
-
-  .rihgt {
-    padding: 0;
-
-    .profilBox {
-      height: 44px;
-      width: 100%;
-      margin-top: 25px;
-      display: flex;
-
-      .profil {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        height: 100%;
-        background-color: $mainColor;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
-        color: #FFFFFF;
-      }
-
-      .leng {
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #7FAC92;
-
-        .active {
-          background-color: $mainColor;
-        }
-
-        .nav-link {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 19px;
-          color: #FFFFFF;
-        }
-      }
-    }
-
-    .src {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      input {
-        border-radius: 0;
-        width: 83%;
-      }
-
-      button {
-        border-radius: 0;
-        background-color: $mainColor;
-        color: #FFFFFF;
-      }
-    }
-  }
-}
-
-.caruselBox {
-  width: 1280px;
-  height: 400px;
-  padding: 39px 89px 0 89px;
-  background-color: #FFFFFF;
-
-  .left {
-    width: 65%;
-    height: 99%;
-    padding: 0;
+.App{
+  width: 100vw;
+  height: 100vh;
+  background-color: #1B6B50;
+  .box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url("../img/politex_img.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center 200px ;
     position: relative;
 
-    .swiper1 {
-
-      height: 100%;
-
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      .content {
-        position: absolute;
-        left: 7.5%;
-        top: 10%;
-        z-index: 1;
-        width: 85%;
-        height: 80%;
-        background: rgba(0, 0, 0, 0.5);
-        outline: #FFFFFF solid 3px;
-        color: #FFFFFF;
-
-        .title {
-          text-transform: uppercase;
-          text-align: center;
-          margin-top: 5%;
-          font-weight: 700;
-          font-size: 20px;
-          line-height: 24px;
-        }
-
-        .orinlar {
-          margin-top: 5%;
-          width: 50%;
-
-          .text {
-            text-align: center;
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 24px;
-            margin-bottom: 20px;
-          }
-
-          p {
-            margin: 0 0 10px 25%;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 27px;
-
-            span {
-              margin-left: 15px;
-              font-size: 20px;
-            }
-          }
-        }
-      }
-
-
-    }
-
-  }
-
-  .right {
-    width: 35%;
-    height: 99%;
-    padding: 0;
-
-    a {
-      font-weight: 500;
-      font-size: 20px;
-      text-align: center;
-      line-height: 27px;
-      color: #FFFFFF;
-    }
-
-    .menu {
+    .navbar{
+      width: 100%;
+      height: 90px;
+      background-color: #15523D;
+      margin-bottom: 40px;
       display: flex;
-      height: 50%;
-
-      .bizHaqimizda {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        height: 100%;
-        background: #7FAC92;
-
-      }
-
-      .yangiliklar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        height: 100%;
-        background: $mainColor;
+      padding: 0 30px;
+      justify-content: space-between;
+      font-weight: bold;
+      line-height: 120%;
+      font-size: 35px;
+      color: white;
+      .logoNavbar{
+        width: 90px;
       }
     }
-
-  }
-}
-
-.sectionBox {
-
-  width: 1280px;
-  margin: 0 auto;
-  padding: 39px 89px;
-  background-color: #FFFFFF;
-
-  .section {
-    display: flex;
-    justify-content: space-between;
-
-    .box {
-      padding: 1px;
-      .title {
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 27px;
-        text-align: center;
-      }
-
-      .text {
-        font-weight: 600;
-        font-size: 60px;
-        line-height: 97px;
-        text-align: center;
-        color: $mainColor;
-      }
-    }
-
-  }
-
-  .video {
-    width: 100%;
-    height: 420px;
-    margin-top: 0;
-  }
-
-  .FotoLavhalar {
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 24px;
-    margin: 30px 0;
-    color: $mainColor;
-  }
-
-  .swiper2 {
-    height: 400px;
-
-    img {
+    .footer {
+      position: absolute;
+      bottom: 0;
+      margin-top: 40px;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-  }
-
-}
-
-.footerBox {
-  background-color: $mainColor;
-  width: 1280px;
-  padding: 39px 89px 39px 89px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-
-  .left {
-    width: 50%;
-    .titleB {
-      width: 100%;
+      height: 100px;
+      padding: 10px 50px;
+      background-color: #15523D;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-
-      img {
-        width: 22%;
-        height: auto;
-      }
-
-      span {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 25px;
-        color: #FFFFFF;
-        width: 75%;
-      }
-    }
-
-    .aloqa {
-      width: 50%;
-      margin-top: 5%;
-
-      .title {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 25px;
-        color: #FFFFFF;
-      }
-
-      .mesenger {
-        margin-top: 10px;
-
-        a {
+      .left {
+        width: 33.3%;
+        p{
           color: white;
-
-          img {
-            width: 30px;
-            height: auto;
-          }
-        }
-
-      }
-    }
-  }
-
-  .tel {
-    width: 50%;
-    margin-top: 5%;
-
-    .title {
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 25px;
-      color: #FFFFFF;
-      margin-bottom: 10px;
-    }
-
-    a {
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 25px;
-      color: #FFFFFF;
-
-      img {
-        width: 30px;
-        height: auto;
-        margin-right: 5px;
-      }
-    }
-  }
-
-  .cartaBox {
-    padding: 0;
-
-    .carta {
-      width: 100%;
-      height: 300px;
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .navbar {
-    width: 100% !important;
-    padding: 0 30px;
-  }
-  .caruselBox {
-    padding: 39px 30px 0 30px;
-    height: 650px;
-    .left {
-      width: 100%;
-      height: 70%;
-
-      .swiper1 {
-        .content {
-          .title {
-            font-size: 20px;
-            line-height: 24px;
-          }
-          .orinlar {
-            .text {
-              font-size: 18px;
-              line-height: 24px;
-              margin-bottom: 20px;
-            }
-
-            p {
-              margin: 0 0 10px 25%;
-              font-size: 15px;
-              line-height: 27px;
-
-              span {
-                margin-left: 15px;
-                font-size: 20px;
-              }
-            }
-          }
-        }
-      }
-    }
-    .right {
-      width: 100%;
-      height: 15%;
-      display: flex;
-      a {
-        font-size: 20px;
-        line-height: 27px;
-      }
-      .menu {
-        width: 100%;
-        height: 100%;
-
-        .bizHaqimizda {
-          width: 50%;
-          height: 100%;
-        }
-
-        .yangiliklar {
-          width: 50%;
-          height: 100%;
-        }
-
-        &:nth-of-type(2) {
-          .bizHaqimizda {
-            background: $mainColor;
-          }
-
-          .yangiliklar {
-            background: #7FAC92;
-          }
-        }
-      }
-
-    }
-  }
-  .sectionBox {
-    padding: 39px 30px;
-    .section {
-      .box {
-        .title {
-          font-size: 20px;
-          line-height: 27px;
-        }
-        .text {
-          font-size: 50px;
-          line-height: 97px;
-        }
-      }
-
-    }
-    .video {
-      height: 370px;
-    }
-    .swiper2 {
-      height: 250px;
-    }
-  }
-  .footerBox {
-    padding: 39px 30px;
-    .left {
-      width: 50%;
-
-      .titleB {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        img {
-          width: 22%;
-          height: auto;
-        }
-
-        span {
-          font-weight: 500;
-          font-size: 20px;
-          line-height: 25px;
-          color: #FFFFFF;
-          width: 75%;
-        }
-      }
-
-      .aloqa {
-        width: 50%;
-        margin-top: 5%;
-
-        .title {
-          font-weight: 500;
-          font-size: 20px;
-          line-height: 25px;
-          color: #FFFFFF;
-        }
-
-        .mesenger {
-          margin-top: 10px;
-
-          a {
-            color: white;
-
-            img {
-              width: 30px;
-              height: auto;
-            }
-          }
-
-        }
-      }
-    }
-
-    .tel {
-      width: 50%;
-      margin-top: 5%;
-
-      .title {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 25px;
-        color: #FFFFFF;
-        margin-bottom: 10px;
-      }
-
-      a {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 25px;
-        color: #FFFFFF;
-
-        img {
-          width: 30px;
-          height: auto;
-          margin-right: 5px;
-        }
-      }
-    }
-
-    .cartaBox {
-      padding: 0;
-
-      .carta {
-        width: 100%;
-        height: 300px;
-      }
-    }
-  }
-}
-@media (max-width: 992px) {
-  .navbar {
-    .left {
-      img {
-        width: 96px;
-        height: 96px;
-      }
-      .title {
-        font-size: 18px;
-        line-height: 21px;
-        margin-left: 15px;
-      }
-    }
-    .rihgt {
-      .profilBox {
-        margin-top: 15px;
-        .profil {
           font-size: 17px;
-          line-height: 24px;
-        }
-        .leng {
-          .nav-link {
-            font-size: 14px;
-            line-height: 19px;
-          }
+          font-weight: 600;
+          letter-spacing: 1px;
+          margin: 0 0 10px 10px;
         }
       }
-      .src {
-        button {
-          font-size: 15px;
+      .center{
+        width: 33.3%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        p{
+          color: white;
+          margin: 0;
+          font-weight: 600;
+          font-size: 17px;
+          letter-spacing: 1px;
         }
       }
-    }
-  }
-  .caruselBox {
-    height: 550px;
-    .left {
-      .swiper1 {
-        .content {
-          .title {
-            font-size: 18px;
-            line-height: 20px;
-          }
+      .righte{
+        width: 33.3%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        height: 100%;
+        a{
+          color: white;
+          margin: 0;
+          font-weight: 600;
+          font-size: 17px;
+          letter-spacing: 1px;
         }
       }
-    }
-    .right {
-      height: 12%;
-      a {
-        font-size: 18px;
-        line-height: 20px;
-      }
-    }
-  }
-  .sectionBox {
-    .section {
-      width: 100%;
-      padding: 0;
-      box-sizing: border-box;
-      .box {
-        width: 200px;
-        .title {
-          padding: 5px;
-          height: 85px;
-          line-height: 25px;
-        }
-        .text {
-          line-height: 55px;
-        }
-      }
-    }
-  }
-  .footerBox {
-    display: block;
-    .left {
-      width: 100%;
-      .aloqa {
-        .mesenger {
+      .wrapper {
+        display: flex;
+        list-style: none;
+        padding: 0!important;
+        .icon {
+          position: relative;
+          background: #ffffff;
+          border-radius: 50%;
+          padding: 0;
+          margin: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 18px;
           display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+          transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          &:hover .tooltip {
+            top: -45px;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+          }
+          &:hover span, .wrapper .icon:hover .tooltip {
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+          }
+        }
+        .facebook {
+          color: #1877F2 !important;
+        }
+        .youtube {
+          color: #CD201F !important;
+        }
+        .twitter {
+          color: #1DA1F2 !important;
+        }
+        .instagram {
+          color: #E4405F !important;
+        }
+        .telegram {
+          color: #229ED9 !important;
+        }
+        .tooltip {
+          position: absolute;
+          top: 0;
+          font-size: 14px;
+          background: #ffffff;
+          color: #ffffff;
+          padding: 5px 8px;
+          border-radius: 5px;
+          box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          &::before {
+            position: absolute;
+            content: "";
+            height: 8px;
+            width: 8px;
+            background: #ffffff;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          }
         }
       }
     }
+    .home{
+      width:65%;
+      height: 300px;
+      margin: 10% auto;
+      border-radius: 15px;
+      display: flex;
+      overflow: hidden;
+      a{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
 
-    .tel {
-      padding-left: 5%;
-      a {
-        font-size: 16px;
-        line-height: 20px;
-        display: block;
-        img {
-          margin-right: 50%;
+        transition-duration: 0.5s;
+        &:nth-of-type(1){
+          border-right: 1px solid white;
         }
-      }
-    }
-
-    .cartaBox {
-      width: 100%;
-      .carta {
-        width: 100%;
-        height: 300px;
+        &:hover{
+          font-size: 42px;
+          transition-duration: 0.5s;
+        }
       }
     }
   }
 }
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 15px;
-    height: 220px;
-    .left {
-      img {
-        width: 66px;
-        height: 66px;
-      }
-    }
-    .rihgt {
-      .profilBox {
-        margin-top: 0;
-      }
 
-      }
-    }
-  .caruselBox {
-    width: 100%;
-    padding:15px;
-    height: 520px;
-    .left {
-      width: 100%;
-      height: 70%;
-      .swiper1 {
-        .content {
-          .title {
-            font-weight: 600;
-            font-size: 17px;
-          }
+.App .box .footer .wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877F2 !important;
+  color: #ffffff !important;
+}
 
-          .orinlar {
-            .text {
-              font-size: 17px;
-              line-height: 24px;
-              margin-bottom: 20px;
-            }
+.App .box .footer .wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1DA1F2 !important;
+  color: #ffffff !important;
+}
 
-            p {
-              margin: 0 0 10px 10px;
-              font-size: 15px;
-              line-height: 20px;
+.App .box .footer .wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F !important;
+  color: #ffffff !important;
+}
 
-              span {
-                margin-left: 15px;
-                font-size: 16px;
-              }
-            }
-          }
-        }
-      }
-    }
+.App .box .footer .wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+  background: #CD201F !important;
+  color: #ffffff !important;
+}
 
-    .right {
-      height: 11%;
-      a {
-        font-size: 15px;
-        line-height: 20px;
-      }
-    }
+.App .box .footer .wrapper .telegram:hover,
+.wrapper .telegram:hover .tooltip,
+.wrapper .telegram:hover .tooltip::before {
+  background: #229ED9 !important;
+  color: #ffffff !important;
+}
+
+@-webkit-keyframes ani {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
   }
-  .sectionBox {
-    width: 100%;
-    padding: 0 15px 29px 15px;
-    .section {
-
-      flex-wrap: wrap;
-      .box {
-        width: 50%;
-        .title {
-          padding: 5px;
-          height: 60px;
-          font-size: 18px;
-          line-height: 20px;
-        }
-        .text {
-          font-size: 30px;
-          line-height: 35px;
-        }
-      }
-
-    }
-    .video {
-      margin-top: 20px;
-      padding: 0;
-      height: 230px;
-    }
-    .FotoLavhalar {
-      font-size: 20px;
-      line-height: 24px;
-      margin: 20px 0;
-    }
-    .swiper2 {
-      height: 200px;
-    }
+  to {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
   }
-  .footerBox {
-    padding: 15px;
-    width: 100%;
-    .left {
-      .titleB {
+}
 
-        img {
-          width: 100px;
-        }
+@keyframes ani {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  to {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+}
 
-        span {
-          font-size: 18px;
-        }
-      }
-      .contact_Box{
-        display: block!important;
-        flex-wrap: nowrap;
-        .aloqa {
-          width: 100%;
-          .mesenger {
-            display: flex;
-            p{
-              padding: 0 10px;
-            }
-          }
-        }
-        .tel {
-          width: 100%;
-          padding-left: 0;
-          a {
-            font-size: 16px;
-            line-height: 20px;
-            display: block;
-            img {
-              margin-right: 3%;
-            }
-          }
-        }
-      }
-    }
-    .cartaBox {
-      width: 100%;
-      margin-top: 20px;
-      .carta {
-        width: 100%;
-        height: 300px;
-      }
-    }
+@-webkit-keyframes ani2 {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}
+
+@keyframes ani2 {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
   }
 }

@@ -2,11 +2,11 @@
 $mainColor: #418C61;
 
 .loginPage{
-  width: 1280px;
+  width: 100vw;
   min-height: 80vh;
   margin: 0 auto;
-  padding: 39px 89px 39px 89px;
-  background-color: #FFFFFF;
+  padding: 0 89px;
+  background-color: inherit;
   .login-page{
     width: 100%;
     height: 600px;
@@ -14,7 +14,6 @@ $mainColor: #418C61;
     display: flex;
     overflow: hidden;
     padding: 0;
-    box-shadow: 5px 5px 20px #7FAC92;
 
     .left-side{
       width: 50%;
