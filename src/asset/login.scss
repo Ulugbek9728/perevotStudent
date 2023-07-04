@@ -1,0 +1,244 @@
+
+$mainColor: #418C61;
+
+.loginPage{
+  width: 1280px;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 39px 89px 39px 89px;
+  background-color: #FFFFFF;
+  .login-page{
+    width: 100%;
+    height: 600px;
+    margin: 50px auto;
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 5px 5px 20px #7FAC92;
+
+    .left-side{
+      width: 50%;
+      background-color: $mainColor;
+      padding: 10px;
+      box-sizing: border-box;
+      position: relative;
+      .title{
+        font-size: 35px;
+        line-height: 40px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 60px;
+      }
+      .commit{
+        font-size: 16px;
+        line-height: 24px;
+        color: white;
+        text-align: justify;
+        font-weight: 100;
+        padding-top: 10px;
+      }
+      a{
+        position: absolute;
+        top: 290px;
+        left: 28%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $mainColor;
+        background-color: white;
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 5px;
+      }
+    }
+    .right-side{
+      width: 50%;
+      background-color: white;
+      .container{
+        width: 80%;
+        min-height: 400px;
+        margin: 100px auto;
+        text-align: center;
+        .create{
+          font-size: 40px;
+          line-height: 50px;
+          color: $mainColor;
+          font-weight: bold;
+          text-align: center;
+        }
+        .text{
+          padding-top: 30px;
+          text-align: center;
+          font-size: 20px;
+          color: grey;
+        }
+        .all-input {
+          width: 95%;
+          height: 40px;
+          margin-top: 20px;
+          position: relative;
+          box-sizing: border-box;
+          input{
+            width: 100%;
+            height: 100%;
+            border-top: none;
+            border-left: none;
+            border-right: 2px solid #e8e8e8;
+            border-bottom: 2px solid #e8e8e8;
+            padding-left: 50px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #e1e1e1;
+            &:focus{
+              outline: none;
+              border-bottom: 2px solid $mainColor;
+            }
+          }
+          .user-icon{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 8px;
+            left: 15px;
+          }
+          .show{
+            position: absolute;
+            top: 10px;
+            cursor: pointer;
+            right: 22px;
+            width: 22px;
+            z-index: 100;
+          }
+
+        }
+        .signUp{
+          width: 200px;
+          height: 50px;
+          background-color: $mainColor;
+          color: white;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+          margin: 20px 0;
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+    }
+
+  }
+}
+
+@media (max-width: 1200px) {
+  .loginPage{
+    width: 100%;
+    min-height: 80vh;
+    padding: 30px;
+    .login-page{
+      .right-side{
+        width: 50%;
+        .container{
+          width: 90%;
+          .all-input {
+            width: 100%;
+          }
+        }
+      }
+
+    }
+  }
+}
+@media (max-width: 992px) {
+  .loginPage{
+    min-height: 600px!important;
+    padding: 0 30px;
+    .login-page{
+      height: 100%;
+      display: block;
+      .left-side{
+        width: 100%;
+        min-height: 250px;
+        padding: 20px 20px 30px 20px;
+        .title{
+          padding-top: 10px;
+        }
+        a{
+          top: 70%;
+          left: 35%;
+          width: 200px;
+          height: 50px;
+          font-size: 18px;
+        }
+      }
+      .right-side{
+        width: 100%;
+        height: 60%;
+        .container{
+          width: 90%;
+          margin: 30px auto;
+        }
+      }
+
+    }
+  }
+}
+@media (max-width: 768px) {
+  .loginPage{
+    min-height: 600px!important;
+    padding: 0 15px;
+    .login-page{
+      height: 100%;
+      margin: 30px auto;
+
+      .left-side{
+        width: 100%;
+        min-height: 40%;
+        padding: 20px 20px 30px 20px;
+        .title{
+          padding-top: 0;
+          font-size: 25px;
+          line-height: 30px;
+        }
+        .commit{
+          padding-top: 10px;
+        }
+        a{
+          position: relative;
+          margin-top: 30px;
+          left: 35%;
+          width: 120px;
+          height: 40px;
+          font-size: 18px;
+        }
+      }
+      .right-side{
+        min-height: 60%;
+        width: 100%;
+        .container{
+          width: 90%;
+          min-height: 200px;
+          margin: 20px auto;
+          padding: 0;
+          .create{
+            font-size: 25px;
+            line-height: 30px;
+          }
+          .text{
+            padding-top: 10px;
+            font-size: 16px;
+          }
+          .all-input {
+            margin-top: 10px;
+          }
+          .signUp{
+            margin: 10px 0;
+          }
+        }
+      }
+
+    }
+  }
+}

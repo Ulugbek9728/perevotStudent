@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import HOME from './pages/Home'
+import {Routes, Route} from "react-router-dom";
+import "./asset/navbar.scss"
+// import Ariza from "./pages/ariza";
+// import Login from "./pages/login";
+// import Natija from "./pages/natija";
+import {ToastContainer} from "react-toastify";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <div className="App">
+            <ToastContainer/>
+            <Routes>
+                {/*<Route path={"/login"} element={<Login/>}/>*/}
+                {/*<Route path={"/Submit"} element={<Ariza/>}/>*/}
+                {/*<Route path={"/Result"} element={<Natija/>}/>*/}
+                {/*<Route path={"/Adminyoli/*"} element={<AdminPage/>}/>*/}
+                <Route path={"/"} element={<HOME/>}/>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;

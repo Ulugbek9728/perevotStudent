@@ -1,0 +1,131 @@
+$mainColor: #418C61;
+.test{
+  cursor: pointer;
+}
+.ArizaPage{
+  width: 1280px;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 39px 89px 39px 89px;
+  background-color: #FFFFFF;
+  .title{
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 24px;
+    color: $mainColor;
+  }
+  .login-page{
+    width: 100%;
+    min-height: 650px;
+    margin: 50px auto;
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 5px 5px 20px #7FAC92;
+    .left-side{
+      width: 50%;
+      background-color: $mainColor;
+      padding: 20px;
+      box-sizing: border-box;
+      p{
+        color: white;
+        margin-bottom: 5px;
+        span{
+          background-color: #FFFFFF;
+          color: black;
+          padding: 5px;
+          border-radius: 3px;
+          width: 100%;
+          display: flex;
+        }
+      }
+      .imgBox{
+        display: flex;
+        align-items: center;
+        img{
+          width: 25%;
+          border-radius: 10%;
+          margin-right: 5%;
+        }
+        .fullName{
+          height: auto;
+          display: flex;
+          width: 70%;
+          font-size: 16px;
+        }
+      }
+    }
+    .right-side{
+      width: 50%;
+      height: 100%;
+      background-color: white;
+      padding: 20px;
+      overflow: hidden;
+      h5{
+        font-size: 20px;
+        font-weight: 600;
+        color: $mainColor;
+        text-align: center;
+      }
+      .container{
+        width: 100%;
+        min-height: 110px;
+        margin: 25px auto;
+        padding: 10px;
+        text-align: center;
+        .selectBtn{
+          width: 100%;
+          height: 38px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          background-color: #EAEAEA;
+        }
+      }
+      .signUp{
+        width: 200px;
+        height: 50px;
+        background-color: $mainColor;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .ArizaPage{
+    width: 100%;
+    padding: 30px;
+  }
+}
+@media (max-width: 992px) {
+  .ArizaPage {
+    .login-page {
+      margin: 30px auto;
+      display: block;
+
+      .left-side {
+        width: 100%;
+
+        .imgBox {
+          img {
+            width: 20%;
+          }
+        }
+      }
+
+      .right-side {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .ArizaPage{
+    padding: 15px;
+  }
+}
