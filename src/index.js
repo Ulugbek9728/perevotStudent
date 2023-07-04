@@ -5,7 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min"
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import "./utils/i18n";
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css"
 
 
@@ -15,9 +15,9 @@ root.render(
 
       <BrowserRouter>
           <Suspense fallback={<span class="loader" />}>
-              <Provider>
+              {/*<Provider>*/}
                   <App />
-              </Provider>
+              {/*</Provider>*/}
           </Suspense>
       </BrowserRouter>
 
