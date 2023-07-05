@@ -30,28 +30,12 @@ function Login(props) {
         setIsButtonLoading(true);
         axios.post(`${ApiName1}/public/login`, requestData).then((response) => {
             if (response.status === 200) {
-
                 if (response.data.DEGREE === 'ADMIN') {
                     localStorage.setItem("token", response.data.jwt);
                     localStorage.setItem("degree", response.data.DEGREE);
                     localStorage.setItem("user_Info", response.data.NAME);
                     localStorage.setItem("id", response.data.id);
                     navigate("/Adminyoli");
-                }
-                if (response.data.DEGREE === 'RECTOR') {
-                    localStorage.setItem("degree", response.data.DEGREE);
-                    localStorage.setItem("token", response.data.jwt);
-                    localStorage.setItem("user_Info", response.data.NAME);
-                    localStorage.setItem("id", response.data.ID);
-                    navigate("/SeeAll");
-                }
-                if (response.data.DEGREE === 'DEKAN') {
-                    localStorage.setItem("token", response.data.jwt);
-                    localStorage.setItem("user_Info", response.data.NAME);
-                    localStorage.setItem("id", response.data.ID);
-                    localStorage.setItem("faculty", response.data.FACULTY);
-                    localStorage.setItem("faculty_ID", response.data.FACULTY_ID);
-                    navigate("/Dekanyoli");
                 }
             }
             setIsButtonLoading(false);

@@ -1,14 +1,15 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import "../css/fontawesome/css/all.min.css"
-
+import {useTranslation} from "react-i18next";
 
 
 function Footer(props) {
+    const {t} = useTranslation();
     return (
         <div className="footer">
             <div className="left">
-                <p>Bizning Ijtimoiy Tarmoqlar:</p>
+                <p>{t('Mesenger')}</p>
                 <ul className="wrapper">
                     <li>
                         <a className="icon facebook" href="#">
@@ -50,11 +51,10 @@ function Footer(props) {
                 </ul>
             </div>
             <div className="center">
-                <Link to={"/SignInAdmin"}>
-                    <p>
-                        RTTM-2023
-                    </p>
-                </Link>
+
+                <p>
+                    RTTM-2023
+                </p>
             </div>
             <div className="righte">
 

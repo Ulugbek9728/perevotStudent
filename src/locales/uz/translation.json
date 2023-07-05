@@ -1,35 +1,21 @@
 {
   "header": {
     "Title": " Islom Karimov nomidagi Toshkent davlat texnika universiteti",
-    "profilButton": "Profilga kirish",
-    "qidiruv": "Qidiruv"
+    "profilButton": "Profilga kirish"
   },
   "carusel": {
-    "Biz_Haqimizda": "Biz haqimizda",
-    "Yangiliklar": "Yangiliklar",
-    "Ariza yuborish": "Ariza topshirish",
-    "TTJ": "Natija",
-    "Band": "Band o'rinlar",
-    "Bo'sh": "Bo'sh o'rinlar",
-    "Kurs": "Kurs"
+    "TTJ": "Natija"
   },
-  "umumiyKvota": "Umumiy joylar soni",
-  "umumiyBo'sh": "Bo'sh joylar soni",
-  "umumiyBand": "Band joylar soni",
-  "umumiyAriza": "Umumiy Arizalar soni",
-  "FotoLavha": "Foto lavhalar",
-  "Bo'limName": "Talabalarni turar joy bilan ta’minlash ishlarini muvofiqlashtiruvchi bo’lim",
-  "Aloqa": "Aloqa",
   "Mesenger": "Ijtimoiy tarmoqlar",
   "know-result": "Natijani ko'rish, Ariza holati",
   "enter-hemis-id": "\"Hemis\" Talaba IDni kiriting",
   "send": "Yuborish",
   "result": "Natija",
   "student-id": "Talaba ID",
-  "give-reason-for-ttj": "TTJda turish uchun sabab ko'rsating",
-  "see-more": "Yana",
+  "give-reason-for-ttj": "Ta'limni ko'chirish turini tanlang",
   "password": "Parol",
   "login": "Login",
+  "til": "Til",
   "salom": "ASSALOMU ALAYKUM!",
   "TTJxushKelibsiz": "Talabalar turar joylariga onlayn-ariza platformasiga xush kelibsiz!",
   "TTJeslatma": "Talabalar uchun eslatma: Hurmatli talabalar, agar siz yangi o‘quv yilida Talabalar turar joyidan joy olish uchun ariza topshirmoqchi bo‘lsangiz quyidagilarga e’tiborli bo‘lishingizni so‘raymiz:",
@@ -38,6 +24,9 @@
   "eslatma3": "Onlayn ariza qoldirish jarayonida xatolikka yo‘l qo‘ysangiz +998944872284 raqamiga murojaat qilishingiz mumkin.",
   "faculty": "Fakultet",
   "direction": "Yo'nalish",
+  "talim-turi": "Ta'lim turi",
+  "talim-shakli": "Ta'lim shakli",
+  "talim-tili": "Ta'lim tili",
   "group": "Guruh",
   "course": "Kurs",
   "address": "Manzil",
@@ -60,19 +49,5 @@
     "patronymic": "Iltimos sharif kiriting!",
     "login": "Iltimos login kiriting!",
     "faculty": "Iltimos fakultet tanlang!"
-  },
-  "reasons": {
-    "1": "Chin yetim yoki yetim talabalar",
-    "2": "Boquvchisini yo‘qotgan (otasi) talabalar",
-    "3": "Nogironlgi bo‘lgan talabalar",
-    "4": "Otasi (boquvchisi) nogiron talabalar",
-    "5": "Temir daftar”, “Ayollar daftari”, “Yoshlar daftari” \n ro‘yxatiga kiritilgan, ijtimoiy himoyaga o‘ta muhtoj oila farzandlari",
-    "6": "Oilada ikki va undan ortiq farzandlari kunduzgi \n            ta’limda shartnoma asosida o‘qiydigan oila farzandlari",
-    "7": "Chet eldan kelib o‘qiydigan xorijiy talabalar",
-    "8": "Respublikaning olis hududlaridan kelgan talabalar",
-    "9": "Yozgi ta’til vaqtida “Bunyodkor yoshlar mehnat otryadi”da faol ishtirok etgan talabalar",
-    "10": "Universitet Yoshlar ittifoqi kengashi raisining tavsiyanomasiga\n         asosan universitet yoshlar Kengashi a’zolari",
-    "11": "Iqtidorli talabalar (xalqaro, respublika, hudud va universitet miqyosida \n        o‘tkazilgan fan olimpiadalari va sport musobaqalari, ko‘rik-tanlovlar g‘oliblari, \n        ma’naviy-ma’rifiy va sport tadbirlarida faol ishtirok etgan)",
-    "12": "Talabalar turar joyida o‘tgan o‘quv yillarida namunali faoliyat yuritgan talabalar\n         kengashi raisi va qavat sardorlari"
   }
 }

@@ -1,35 +1,21 @@
 {
   "header": {
     "Title": " Tashkent State Technical University named after Islam Karimov",
-    "profilButton": "Login to profile",
-    "qidiruv": "Search"
+    "profilButton": "Login to profile"
   },
   "carusel": {
-    "Biz_Haqimizda": "About Us",
-    "Yangiliklar": "News",
-    "Ariza yuborish": "Submit an application",
-    "TTJ": "Result",
-    "Band": "Busy places",
-    "Bo'sh": "Empty spaces",
-    "Kurs": "Course"
+    "TTJ": "Result"
   },
-  "umumiyKvota": "Total number of places",
-  "umumiyBo'sh": "Number of available spaces",
-  "umumiyBand": "Number of occupied places",
-  "umumiyAriza": "Total number of applications",
-  "FotoLavha": "Photos",
-  "Bo'limName": "Department coordinating the work of providing accommodation to students",
-  "Aloqa": "Contact",
   "Mesenger": "Social networks",
   "know-result": "Application status",
   "enter-hemis-id": "Enter \"Hemis\" student ID",
   "send": "Send",
   "result": "Result",
   "student-id": "Student ID",
-  "give-reason-for-ttj": "Specify the reason for staying in the hostel",
-  "see-more": "See more",
+  "give-reason-for-ttj": "Ta'limni ko'chirish turini tanlang en",
   "password": "Password",
   "login": "Login",
+  "til": "Language",
   "salom": "HELLO!",
   "TTJxushKelibsiz": "Welcome to the online application platform for students!",
   "TTJeslatma": "Note for students: Dear students, if you want to apply for a place in the student accommodation in the new academic year, please pay attention to the following:",
@@ -38,6 +24,9 @@
   "eslatma3": "-if you make a mistake while submitting an online application, you can contact the number +998944872284.",
   "faculty": "Faculty",
   "direction": "Направление",
+  "talim-turi": "Ta'lim turi en",
+  "talim-shakli": "Ta'lim shakli en",
+  "talim-tili": "Ta'lim tili en",
   "group": "Group",
   "course": "Course",
   "address": "Address",
@@ -60,19 +49,5 @@
     "patronymic": "Please enter patronymic!",
     "login": "Please enter login!",
     "faculty": "Please select faculty!"
-  },
-  "reasons": {
-    "1": "Orphaned (lost two or one parent) students",
-    "2": "Students who have lost their breadwinner (father)",
-    "3": "Students with disabilities",
-    "4": "Students whose father (breadwinner) is disabled",
-    "5": "Children from families in dire need of social protection, included in the lists of \"Temir Daftar\", \"Ayollar Daftari\", \"Yoshlar Daftari\"",
-    "6": "Children from a family in which two or more children study full-time on a contract basis",
-    "7": "Foreign students who come from other countries",
-    "8": "Students from remote areas of the republic",
-    "9": "Students who actively participated in the work of the \"Creative Youth Labor Squad\" during the summer holidays",
-    "10": "Members of the University Youth Council on the basis of a letter of recommendation from the Chairman of the Council of the University Youth Union",
-    "11": "Talented student youth (winners of scientific Olympiads and sports competitions held at the international, republican, regional and university levels, as well as actively participating in spiritual, educational and sports events)",
-    "12": "The chairman of the student council and the elders of the floors, who worked exemplarily in the student dormitory in the past academic years."
   }
 }

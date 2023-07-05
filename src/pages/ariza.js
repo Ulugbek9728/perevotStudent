@@ -2,13 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import "../asset/arizaPage.scss"
 import axios from "axios";
-import {PlusOutlined} from '@ant-design/icons';
-import {Button, Form, Input, Modal, Space} from 'antd';
+import {Button, Form, Segmented, Select, Space} from 'antd';
 import {ApiName1} from "../APIname1";
 import {useNavigate} from "react-router";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 
-import {CaretDownOutlined} from '@ant-design/icons';
 
 const onFinish = (values: any) => {
     console.log('Received values of form:', values);
@@ -30,6 +28,9 @@ function Ariza(props) {
         city: "",
         district: "",
         phone: "",
+        educationForm: '',
+        educationLang: '',
+        educationType: '',
         attachList: []
     });
     const [file, setFile] = useState([{
@@ -37,52 +38,12 @@ function Ariza(props) {
         fileBox: null
     }]);
     const [isLoading, setIsLoading] = useState(false);
+    const [language, setLanguage] = useState(true);
+
     const [message, setMessage] = useState([]);
     const [message2, setMessage2] = useState('');
     const [sucsessText, setSucsessText] = useState('');
-    const [sabab, setSabab] = useState([{}]);
-    const [Index, setIndex] = useState('');
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const lang = localStorage.getItem('i18nextLng');
-    const addLanguage = () => {
-        setFile([...file, {
-            fileName: '',
-            fileBox: ''
-        }])
-    };
-    useEffect(() => {
-        setSabab([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-            .map((item) => (
-                {
-                    name: t(`reasons.${item}`)
-                }))
-        )
-    }, [lang]);
-    const handleInputFile = (e, index) => {
-        file[index].fileBox = e.target.files[0]
-    };
-
-    const handleInputLanguage = (e, index) => {
-        setFile(file?.map((item, idn) => {
-            if (idn === Index) {
-                item.fileName = e;
-                return item;
-            } else {
-                return item;
-            }
-        }));
-    };
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-    const handleOk = () => {
-        setIsModalVisible(false);
-
-    };
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
 
     useEffect(() => {
 
@@ -107,7 +68,7 @@ function Ariza(props) {
 
     function getStudent() {
         axios.get(`${ApiName1}/account/me`, {
-                params: {token: localStorage.getItem("token")}
+            params: {token: localStorage.getItem("token")}
         }).then((response) => {
             setStudent({
                 ...Student,
@@ -123,9 +84,13 @@ function Ariza(props) {
                 country: response.data.data.country.name,
                 city: response.data.data.province.name,
                 district: response.data.data.district.name,
+                educationForm: response.data.data.educationForm.name,
+                educationLang: response.data.data.educationLang.name,
+                educationType: response.data.data.educationType.name,
             })
+            console.log(response.data.data)
         }).catch((error) => {
-            navigate("/login");
+            navigate("/");
             console.log(error);
         })
 
@@ -155,7 +120,7 @@ function Ariza(props) {
                     }).catch((error) => {
                     setIsLoading(false);
                     if (error.response.status === 400) {
-                        setMessage2(error.response.data==='Bunday talaba mavjud '?t('application-submitted-already'):'')
+                        setMessage2(error.response.data === 'Bunday talaba mavjud ' ? t('application-submitted-already') : '')
                     }
                 })
 
@@ -164,29 +129,15 @@ function Ariza(props) {
         })
     }
 
+    const handleChange = (value) => {
+        console.log(`selected ${value}`);
+    };
+    console.log(language);
+
     return (
         <>
             <div className='container ArizaPage'>
-                <Modal title={"Sababni Tanlang"} open={isModalVisible}
-                       onOk={handleOk} onCancel={handleCancel}>
-                    <div>
-                        {sabab.map((item,index) => {
-                            return <div key={item.name} className="test"
-                                        onClick={(e) => {
-                                            handleInputLanguage(item.name)
-                                            setIsModalVisible(false)
-                                        }}>
-                                {item.name}
-                                <hr/>
-                            </div>
-                        })}
-
-                    </div>
-                </Modal>
                 <div className="row">
-                    <div className="title">
-                        {t("carusel.Ariza yuborish")}
-                    </div>
                     <div className="login-page">
                         <div className="left-side">
                             <div className="imgBox">
@@ -198,8 +149,14 @@ function Ariza(props) {
                             <p>{t('login')}:<span>{Student.login}</span></p>
                             <p>{t('faculty')}: <span>{Student.faculty}</span></p>
                             <p>{t('direction')}: <span>{Student.specialty}</span></p>
-                            <p>{t('group')}: <span>{Student.group}</span></p>
+
+                            <p>{t('talim-shakli')}: <span>{Student.educationForm}</span></p>
+                            <p>{t('talim-tili')}: <span>{Student.educationLang}</span></p>
+
+                            <p>{t('talim-turi')}: <span>{Student.educationType}</span></p>
                             <p>{t('course')}: <span>{Student.course}</span></p>
+
+                            <p>{t('group')}: <span>{Student.group}</span></p>
                             <p>{t('address')}:
                                 <span>{Student.country} {Student.city} {Student.district}</span>
                             </p>
@@ -209,36 +166,48 @@ function Ariza(props) {
 
                         <div className="right-side overflow-auto">
                             <h5>{t('give-reason-for-ttj')}</h5>
-                            <span>{t('only-pdf')}</span>
+                            <Segmented onChange={(e) => {
+                                setLanguage(e)
+                            }} block options={[
+                                {
+                                    label:`${t('til')}`,
+                                    value:true
+                                },
+                                {
+                                    label:`${t('direction')}`,
+                                    value:false
+                                },
+                            ]}/>
+
                             <div className="container p-0">
-                                <Form name="dynamic_form_nest_item" onFinish={onFinish}
-                                      autoComplete="off">
-                                    {file && file.map((item, index) => (
-                                        <div key={index} style={{display: 'flex', marginBottom: 8}}
-                                             align="baseline">
-                                            <button className='selectBtn btn' type="button"
-                                                    onClick={()=>{
-                                                        showModal();
-                                                        setIndex(index)
-                                                    }}>
-                                                {item.fileName}
-                                                <CaretDownOutlined />
-                                            </button>
-                                            <input type="file" className='form-control' id='FILE'
-                                                   accept="application/pdf"
-                                                   onChange={(e) => handleInputFile(e, index)}/>
-                                        </div>
-                                    ))}
-                                    <Form.Item>
-                                        <Button type="dashed" block icon={<PlusOutlined/>}
-                                                onClick={addLanguage}
-                                        >
-                                            Add field
-                                        </Button>
-                                    </Form.Item>
+                                {language ?
+                                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
+                                          autoComplete="off">
+                                        <p>{t('faculty')}: <span>{Student.faculty}</span></p>
+                                        <p>{t('direction')}: <span>{Student.specialty}</span></p>
 
-
-                                </Form>
+                                        <p>{t('til')}:</p>
+                                        <Select
+                                            style={{
+                                                width: "100%",
+                                            }}
+                                            onChange={handleChange}
+                                            allowClear
+                                            options={[
+                                                {
+                                                    value: 'Uz',
+                                                    label: 'uz',
+                                                },
+                                                {
+                                                    value: 'Ru',
+                                                    label: 'ru',
+                                                },
+                                            ]}
+                                        />
+                                    </Form>
+                                    :
+                                    ''
+                                }
 
                             </div>
                             <div className="d-flex justify-content-center">

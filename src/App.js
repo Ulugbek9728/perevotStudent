@@ -1,5 +1,5 @@
 import React from 'react';
-import HOME from './pages/Home'
+import "./asset/navbar.scss"
 import {Routes, Route} from "react-router-dom";
 import "./asset/navbar.scss"
 import Ariza from "./pages/ariza";
@@ -19,11 +19,10 @@ function App() {
             <div className="box">
                 <Nav/>
                 <Routes>
-                    <Route path={"/login"} element={<Login/>}/>
                     <Route path={"/Submit"} element={<Ariza/>}/>
                     {/*<Route path={"/Result"} element={<Natija/>}/>*/}
                     {/*<Route path={"/Adminyoli/*"} element={<AdminPage/>}/>*/}
-                    <Route path={"/"} element={<HOME/>}/>
+                    <Route path={"/"} element={<Login/>}/>
                 </Routes>
                 <Footer/>
 

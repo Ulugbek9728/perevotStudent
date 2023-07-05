@@ -3,31 +3,32 @@ $mainColor: #418C61;
   cursor: pointer;
 }
 .ArizaPage{
-  width: 1280px;
+  width: 100vw;
   min-height: 80vh;
   margin: 0 auto;
-  padding: 39px 89px 39px 89px;
-  background-color: #FFFFFF;
-  .title{
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 24px;
-    color: $mainColor;
-  }
+  padding: 0 89px;
+  background-color: inherit;
   .login-page{
     width: 100%;
-    min-height: 650px;
-    margin: 50px auto;
+    min-height: 100%;
+    margin: 0 auto;
     display: flex;
     overflow: hidden;
     padding: 0;
-    box-shadow: 5px 5px 20px #7FAC92;
     .left-side{
       width: 50%;
       background-color: $mainColor;
       padding: 20px;
       box-sizing: border-box;
+      div{
+        width: 100%;
+        justify-content: space-between;
+        p{
+          width: 48%;
+        }
+      }
       p{
+        width: 100%;
         color: white;
         margin-bottom: 5px;
         span{
@@ -72,14 +73,18 @@ $mainColor: #418C61;
         min-height: 110px;
         margin: 25px auto;
         padding: 10px;
-        text-align: center;
-        .selectBtn{
+        p{
           width: 100%;
-          height: 38px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow:ellipsis;
-          background-color: #EAEAEA;
+          color: $mainColor;
+          margin-bottom: 5px;
+          span{
+            background-color: $mainColor;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            width: 100%;
+            display: flex;
+          }
         }
       }
       .signUp{
