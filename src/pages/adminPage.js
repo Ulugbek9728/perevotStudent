@@ -1,28 +1,16 @@
 import React, {useEffect,useState} from 'react';
 import {
     UserAddOutlined,
-    PicLeftOutlined,
-    TeamOutlined,
-    PauseCircleOutlined,
-    GoldOutlined
 } from '@ant-design/icons';
-import { Layout, Menu, theme, Modal, Input} from 'antd';
+import { Layout, Menu, Modal, Input} from 'antd';
 import {Route, Routes, useNavigate} from "react-router";
-import Rector from "../components/Rector";
-import Dekan from "../components/Dekan";
-import "../asset/Admin.scss"
-import News from "../components/news";
-import Student from "../components/Students";
-import Media from "./media";
-import Faculty from "../components/faculty";
-import Ttj from "../components/TTJ";
-import Kvota from "../components/kvota";
-import TtjStudents from "../components/TTJStudents";
-import logout from "../img/logout.png"
 import axios from "axios";
+import logout from "../img/logout.png"
+import "../asset/Admin.scss"
 import {ApiName1} from "../APIname1";
 import {toast} from "react-toastify";
-import Contact from "../components/contact";
+import Menu1 from "../component/menu1";
+import Menu2 from "../component/menu2";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -96,72 +84,24 @@ function AdminPage(props) {
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
                       onClick={(into)=>{
                           if (into.key === "1"){ navigate("/Adminyoli/");}
-                          if (into.key === "2"){ navigate("/Adminyoli/AddDekan");}
-                          if (into.key === "3"){ navigate("/Adminyoli/StudentList");}
-                          if (into.key === "4"){ navigate("/Adminyoli/AddNews");}
-                          if (into.key === "5"){ navigate("/Adminyoli/Media");}
-                          if (into.key === "6"){ navigate("/Adminyoli/Faculty");}
-                          if (into.key === "7"){ navigate("/Adminyoli/TTJ");}
-                          if (into.key === "8"){ navigate("/Adminyoli/Kvota");}
-                          if (into.key === "9"){ navigate("/Adminyoli/TTJStudets");}
-                          if (into.key === "10"){ navigate("/Adminyoli/Contact");}
+                          if (into.key === "2"){ navigate("/Adminyoli/2");}
                       }}
                       items={[
                           {
-                              label:"Rektor",
+                              label:"Menu 1",
                               key:"1",
                               icon:<UserAddOutlined/>
                               },
                           {
-                              label:"Dekanlar",
+                              label:"Menu 2",
                               key:"2",
                               icon:<UserAddOutlined/>
-                          },
-                          {
-                              label:"Fakultet",
-                              key:"6",
-                              icon:<GoldOutlined />
-                          },
-                          {
-                              label:"TTJ yaratish",
-                              key:"7",
-                              icon:<GoldOutlined />
-                          },
-                          {
-                              label:"Kvotaga bo'lish",
-                              key:"8",
-                              icon:<GoldOutlined />
-                          },
-                          {
-                              label:"Arizalar",
-                              key:"3",
-                              icon:<TeamOutlined />
-                          },
-                          {
-                              label:"TTJ da turuvchi Talabalar",
-                              key:"9",
-                              icon:<TeamOutlined />
-                          },
-                          {
-                              label:"Yangiliklar",
-                              key:"4",
-                              icon:<PicLeftOutlined />
-                          },
-                          {
-                              label:"Media",
-                              key:"5",
-                              icon: <PauseCircleOutlined />
-                          },
-                          {
-                              label:"Contact",
-                              key:"10",
-                              icon: <PauseCircleOutlined />
                           },
                           ]} />
             </Sider>
             <Layout className="site-layout" style={{marginLeft: 200,}}>
                 <Header>
-                    <span className="HeaderTitle">TTJ Admin paneli</span>
+                    <span className="HeaderTitle">Admin paneli</span>
                 </Header>
                 <div className="dropdown">
                     <button type="button" className="btn " data-bs-toggle="dropdown"
@@ -205,16 +145,8 @@ function AdminPage(props) {
 
                 <Content style={{margin: '24px 16px 0', overflow: 'initial',}}>
                     <Routes>
-                        <Route path={"/AddDekan"} element={<Dekan/>}/>
-                        <Route path={"/Faculty"} element={<Faculty/>}/>
-                        <Route path={"/TTJ"} element={<Ttj/>}/>
-                        <Route path={"/Kvota"} element={<Kvota/>}/>
-                        <Route path={"/AddNews"} element={<News/>}/>
-                        <Route path={"/StudentList"} element={<Student/>}/>
-                        <Route path={"/TTJStudets"} element={<TtjStudents/>}/>
-                        <Route path={"/Media"} element={<Media/>}/>
-                        <Route path={"/Contact"} element={<Contact/>}/>
-                        <Route path={"/"} element={<Rector/>}/>
+                        <Route path={"/"} element={<Menu1/>}/>
+                        <Route path={"/2"} element={<Menu2/>}/>
                     </Routes>
                 </Content>
 

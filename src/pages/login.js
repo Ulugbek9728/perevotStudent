@@ -10,6 +10,8 @@ import {useNavigate} from "react-router";
 
 import {toast} from "react-toastify";
 import {Button, Form, Input} from 'antd';
+import Nav from "../component/nav";
+import Footer from "../component/footer";
 
 function Login(props) {
     const formRef = React.useRef(null);
@@ -76,7 +78,7 @@ function Login(props) {
 
     return (
         <>
-
+            <Nav/>
             <div className="container loginPage">
                 <div className="row">
                     <div className="login-page">
@@ -182,6 +184,7 @@ function Login(props) {
                 </div>
 
             </div>
+            <Footer/>
         </>
     );
 }

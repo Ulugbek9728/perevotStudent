@@ -6,6 +6,8 @@ import {Button, Form, Segmented, Select, Space} from 'antd';
 import {ApiName1} from "../APIname1";
 import {useNavigate} from "react-router";
 import {toast} from "react-toastify";
+import Nav from "../component/nav";
+import Footer from "../component/footer";
 
 
 const onFinish = (values: any) => {
@@ -97,36 +99,36 @@ function Ariza(props) {
     }
 
     function postStudent() {
-        const allData = new FormData();
-        setIsLoading(true);
-        file.map((item, index) => (<>{allData.append(item.fileName, item.fileBox)}</>));
-
-        axios.post(`${ApiName1}/attach/upload`, allData)
-            .then((response) => {
-                Student.attachList = response.data
-
-                axios.post(`${ApiName1}/public/student/join/data`, Student)
-                    .then((response) => {
-                        if (response.status === 201) {
-                            setFile([{
-                                fileName: '',
-                                fileBox: null
-                            }])
-
-                            document.getElementById('FILE').value = null;
-                            setSucsessText(t('data-send-success'))
-                            setIsLoading(false);
-                        }
-                    }).catch((error) => {
-                    setIsLoading(false);
-                    if (error.response.status === 400) {
-                        setMessage2(error.response.data === 'Bunday talaba mavjud ' ? t('application-submitted-already') : '')
-                    }
-                })
-
-            }).catch((error) => {
-            setIsLoading(false);
-        })
+        // const allData = new FormData();
+        // setIsLoading(true);
+        // file.map((item, index) => (<>{allData.append(item.fileName, item.fileBox)}</>));
+        //
+        // axios.post(`${ApiName1}/attach/upload`, allData)
+        //     .then((response) => {
+        //         Student.attachList = response.data
+        //
+        //         axios.post(`${ApiName1}/public/student/join/data`, Student)
+        //             .then((response) => {
+        //                 if (response.status === 201) {
+        //                     setFile([{
+        //                         fileName: '',
+        //                         fileBox: null
+        //                     }])
+        //
+        //                     document.getElementById('FILE').value = null;
+        //                     setSucsessText(t('data-send-success'))
+        //                     setIsLoading(false);
+        //                 }
+        //             }).catch((error) => {
+        //             setIsLoading(false);
+        //             if (error.response.status === 400) {
+        //                 setMessage2(error.response.data === 'Bunday talaba mavjud ' ? t('application-submitted-already') : '')
+        //             }
+        //         })
+        //
+        //     }).catch((error) => {
+        //     setIsLoading(false);
+        // })
     }
 
     const handleChange = (value) => {
@@ -136,6 +138,7 @@ function Ariza(props) {
 
     return (
         <>
+            <Nav/>
             <div className='container ArizaPage'>
                 <div className="row">
                     <div className="login-page">
@@ -206,7 +209,49 @@ function Ariza(props) {
                                         />
                                     </Form>
                                     :
-                                    ''
+                                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
+                                          autoComplete="off">
+                                        <p>{t('direction')}:</p>
+                                        <Select
+                                            style={{
+                                                width: "100%",
+                                            }}
+                                            onChange={handleChange}
+                                            allowClear
+                                            options={[
+                                                {
+                                                    value: 'uz',
+                                                    label: 'Uz',
+                                                },
+                                                {
+                                                    value: 'ru',
+                                                    label: 'Ru',
+                                                },
+                                            ]}
+                                        />
+                                        <p>{t('til')}:</p>
+                                        <Select
+                                            style={{
+                                                width: "100%",
+                                            }}
+                                            onChange={handleChange}
+                                            allowClear
+                                            options={[
+                                                {
+                                                    value: 'uz',
+                                                    label: 'Uz',
+                                                },
+                                                {
+                                                    value: 'ru',
+                                                    label: 'Ru',
+                                                },
+                                            ]}
+                                        />
+                                        <p>Sabab:</p>
+                                        <input className='form-control' type="file" accept="application/pdf"/>
+                                        <p>Ariza:</p>
+                                        <input className='form-control' type="file" accept="application/pdf"/>
+                                    </Form>
                                 }
 
                             </div>
@@ -221,7 +266,7 @@ function Ariza(props) {
                 </div>
 
             </div>
-
+            <Footer/>
         </>
     );
 }

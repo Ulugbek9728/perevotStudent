@@ -6,8 +6,7 @@ import Ariza from "./pages/ariza";
 import Login from "./pages/login";
 // import Natija from "./pages/natija";
 import {ToastContainer} from "react-toastify";
-import Nav from "./component/nav";
-import Footer from "./component/footer";
+import AdminPage from "./pages/adminPage";
 
 
 
@@ -17,14 +16,13 @@ function App() {
         <div className="App">
             <ToastContainer/>
             <div className="box">
-                <Nav/>
                 <Routes>
                     <Route path={"/Submit"} element={<Ariza/>}/>
                     {/*<Route path={"/Result"} element={<Natija/>}/>*/}
-                    {/*<Route path={"/Adminyoli/*"} element={<AdminPage/>}/>*/}
+                    <Route path={"/Adminyoli/*"} element={<AdminPage/>}/>
                     <Route path={"/"} element={<Login/>}/>
                 </Routes>
-                <Footer/>
+
 
             </div>
 
