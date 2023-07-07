@@ -11,7 +11,7 @@ function Nav(props) {
             <Link to='/'>
                 <img className="logoNavbar" src="./logo.png" alt=""/>
             </Link>
-            {t("header.Title")}
+            <p>{t("header.Title")}</p>
             <LanguageDropdown/>
         </div>
     );

@@ -18,90 +18,33 @@ $mainColor: #418C61;
     justify-content: center;
     height: 100%;
   }
-
 }
-
-.dropdown {
-  position: absolute;
-  right: 50px;
-  top: 40px;
-  background-color: white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-
-  .dropdown-menu {
-    padding: 5px;
-
-    img {
-      width: 20px;
-      margin-left: 40%;
-    }
-  }
-
-  button {
+.site-layout{
+  .dropdown {
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    background-color: white;
+    border-radius: 50%;
     width: 50px;
     height: 50px;
-    border: none;
-  }
-}
 
-.ADDstudent {
-  width: 88vw;
+    .dropdown-menu {
+      padding: 5px;
 
-  display: flex;
-  justify-content: center;
-
-  .box {
-    width: 80%;
-    height: 100%;
-    background-color: $mainColor;
-    padding: 15px;
-    color: white;
-
-    .left {
-      width: 50%;
-      height: 100%;
-      border-right: 1px solid white;
-      padding: 15px;
-    }
-
-    .right {
-      width: 50%;
-      height: 100%;
-      padding: 15px;
-
-      .dropdown {
-        position: relative;
-        left: 0;
-        top: 0;
-        width: 100% !important;
-        border-radius: 5px !important;
-
-        .selectBtn {
-          width: 200px;
-          border-radius: 5px;
-          box-sizing: border-box;
-          overflow: hidden;
-        }
-
-        .dropdown-menu {
-          width: 200%;
-          padding: 10px;
-          .test {
-            cursor: pointer;
-            width: 100%;
-            border-bottom: 1px solid black;
-
-            &:hover {
-              background-color: rgba(83, 189, 131, 0.54);
-            }
-          }
-        }
+      img {
+        width: 20px;
+        margin-left: 40%;
       }
+    }
 
+    button {
+      width: 50px;
+      height: 50px;
+      border: none;
     }
   }
-
 }
+
+
 

@@ -40,15 +40,14 @@ function Ariza(props) {
         fileBox: null
     }]);
     const [isLoading, setIsLoading] = useState(false);
+    const [fileBoolin, setFileBoolin] = useState(false);
     const [language, setLanguage] = useState(true);
-
     const [message, setMessage] = useState([]);
     const [message2, setMessage2] = useState('');
     const [sucsessText, setSucsessText] = useState('');
 
 
     useEffect(() => {
-
         getStudent();
         notify();
         setMessage('');
@@ -69,7 +68,7 @@ function Ariza(props) {
     }
 
     function getStudent() {
-        axios.get(`${ApiName1}/account/me`, {
+        axios.get(`${ApiName1}/api/student/account/me`, {
             params: {token: localStorage.getItem("token")}
         }).then((response) => {
             setStudent({
@@ -89,8 +88,13 @@ function Ariza(props) {
                 educationForm: response.data.data.educationForm.name,
                 educationLang: response.data.data.educationLang.name,
                 educationType: response.data.data.educationType.name,
+            });
+            axios.post(`${ApiName1}/api/specialty/public/alternative/${response.data.data.specialty.name}`,'').then(
+                (res)=>{
+                    console.log(res)
+                }).catch((error) => {
+                console.log(error)
             })
-            console.log(response.data.data)
         }).catch((error) => {
             navigate("/");
             console.log(error);
@@ -134,7 +138,6 @@ function Ariza(props) {
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
-    console.log(language);
 
     return (
         <>
@@ -147,7 +150,6 @@ function Ariza(props) {
                                 <img src={Student.imageUrl} alt=""/>
                                 <p className="fullName">{Student.name}</p>
                             </div>
-
                             <br/>
                             <p>{t('login')}:<span>{Student.login}</span></p>
                             <p>{t('faculty')}: <span>{Student.faculty}</span></p>
@@ -229,6 +231,24 @@ function Ariza(props) {
                                                 },
                                             ]}
                                         />
+                                        <p>{t('talim-shakli')}:</p>
+                                        <Select
+                                            style={{
+                                                width: "100%",
+                                            }}
+                                            onChange={handleChange}
+                                            allowClear
+                                            options={[
+                                                {
+                                                    value: 'uz',
+                                                    label: 'Uz',
+                                                },
+                                                {
+                                                    value: 'ru',
+                                                    label: 'Ru',
+                                                },
+                                            ]}
+                                        />
                                         <p>{t('til')}:</p>
                                         <Select
                                             style={{
@@ -247,8 +267,19 @@ function Ariza(props) {
                                                 },
                                             ]}
                                         />
-                                        <p>Sabab:</p>
-                                        <input className='form-control' type="file" accept="application/pdf"/>
+                                        <p>Sabab:
+                                            <input className='mx-2' onChange={(e)=>{setFileBoolin(e.target.checked)}}
+                                                   type="checkbox"/>
+                                                   file
+                                        </p>
+                                        {
+                                            fileBoolin ?
+                                                <input className='form-control' type="file" accept="application/pdf"/>
+                                                :
+                                                <input className='form-control' type="text"/>
+                                        }
+
+
                                         <p>Ariza:</p>
                                         <input className='form-control' type="file" accept="application/pdf"/>
                                     </Form>
