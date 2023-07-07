@@ -13,7 +13,8 @@ import {Button, Form, Input} from 'antd';
 import Nav from "../component/nav";
 import Footer from "../component/footer";
 
-function Login(props) {
+function
+Login(props) {
     const formRef = React.useRef(null);
 
     const {t} = useTranslation();
@@ -30,14 +31,18 @@ function Login(props) {
             password: values?.Parol
         };
         setIsButtonLoading(true);
-        axios.post(`${ApiName1}/public/login`, requestData).then((response) => {
+        axios.post(`${ApiName1}/api/login`, requestData).then((response) => {
+            console.log(response);
             if (response.status === 200) {
-                if (response.data.DEGREE === 'ADMIN') {
+                if (response.data.role === "ROLE_ADMIN") {
                     localStorage.setItem("token", response.data.jwt);
-                    localStorage.setItem("degree", response.data.DEGREE);
-                    localStorage.setItem("user_Info", response.data.NAME);
-                    localStorage.setItem("id", response.data.id);
+                    localStorage.setItem("user_Info", response.data.name);
                     navigate("/Adminyoli");
+                }
+                if (response.data.role==="ROLE_STUDENT"){
+                    localStorage.setItem("token", response.data.jwt);
+                    localStorage.setItem("user_Info", response.data.name);
+                    navigate("/Result");
                 }
             }
             setIsButtonLoading(false);
@@ -55,8 +60,6 @@ function Login(props) {
                     setMessage2('Login yoki parol xato');
                 })
             }
-
-
         })
     }
 

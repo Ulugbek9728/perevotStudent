@@ -56,10 +56,6 @@ function Footer(props) {
                     RTTM-2023
                 </p>
             </div>
-            <div className="righte">
-
-            </div>
-
         </div>
     );
 }

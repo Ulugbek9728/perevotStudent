@@ -1,4 +1,4 @@
 
-const ApiName1 = 'https://api-ttj.tdtu.uz';
+const ApiName1 = 'https://transfer.jprq.live';
 
 export {ApiName1}
