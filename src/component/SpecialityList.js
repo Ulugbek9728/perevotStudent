@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Divider, Form, Input, Select, Space, Table, Tag} from "antd";
 import {DeleteOutlined, EditOutlined, ExclamationCircleFilled} from "@ant-design/icons";
-import {addSpeciality, deleteSpeciality, getAllSpeciality} from "../utils/ApiHelper";
+import {addSpeciality, deleteSpeciality, editSpeciality, getAllSpeciality} from "../utils/ApiHelper";
 import {toast} from "react-toastify";
 import {Modal} from 'antd';
 import {useNavigate} from "react-router";
@@ -11,6 +11,7 @@ const {confirm} = Modal;
 const SpecialityList = () => {
 
     const [formValue, setFormValue] = useState({
+        id: '',
         name: '',
         educationLanguage: [],
         educationForms: [],
@@ -19,14 +20,15 @@ const SpecialityList = () => {
     const [data, setData] = useState([]);
     const [beginGetData, setBeginGetData] = useState(false);
     const [beginAddSpeciality, setBeginAddSpeciality] = useState(false);
+    const [beginEditSpeciality, setBeginEditSpeciality] = useState(false);
     const [beginDeleteSpeciality, setBeginDeleteSpeciality] = useState(false);
     const [isReload, setIsReload] = useState(false);
-
+    const [isEdit, setIsEdit] = useState(false);
     const showDeleteConfirm = (onOk) => {
         confirm({
-            title: 'Are you sure delete this task?',
+            title: 'Ushbu yo\'nalishni o\'chirmoqchimisz?',
             icon: <ExclamationCircleFilled/>,
-            content: 'Some descriptions',
+            // content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
@@ -36,6 +38,7 @@ const SpecialityList = () => {
 
         });
     };
+
     const columns = [
         {
             title: 'Name',
@@ -101,14 +104,25 @@ const SpecialityList = () => {
                         className="border-0"
                         size="small"
                         icon={<EditOutlined/>}
+                        onClick={() => {
+                            setFormValue({
+                                id: record?.id,
+                                name: record?.name,
+                                educationForms: record?.forms,
+                                educationLanguage: record?.languages,
+                            });
+                            setIsEdit(true);
+                            window.scrollTo(0, 0);
+                        }}
                     >
                         Edit
                     </Button>
                     <Button
                         size="small"
                         type="dashed"
-                        onClick={() => showDeleteConfirm(()=>deleteSpecialityOnOk(record?.id))}
+                        onClick={() => showDeleteConfirm(() => deleteSpecialityOnOk(record?.id))}
                         className="border-0"
+                        loading={beginDeleteSpeciality}
                         icon={<DeleteOutlined/>}
                     >
                         Delete
@@ -151,7 +165,7 @@ const SpecialityList = () => {
     useEffect(() => {
         getAllSpeciality(setBeginGetData)
             .then((res) => {
-                if (res.status === 401) {
+                if (res?.status === 401) {
                     navigate('/')
                 } else {
                     const map = res?.data?.map((item) => {
@@ -169,23 +183,26 @@ const SpecialityList = () => {
     }, [isReload])
 
     const addSpecialityOnSubmit = (e) => {
-        addSpeciality(e, setBeginAddSpeciality)
+        setBeginAddSpeciality(true);
+        setBeginAddSpeciality(true);
+        addSpeciality(e)
             .then((res) => {
                     console.log(res);
                     if (res?.status === 200) {
                         setIsReload(!isReload);
-                        setBeginAddSpeciality(false);
                         toast.success("Successfully")
+                        setBeginAddSpeciality(false);
                     } else {
                         toast.error(res?.message || res?.data);
+                        setBeginAddSpeciality(false);
                     }
                 }
             );
-        setBeginAddSpeciality(false);
     }
 
     const deleteSpecialityOnOk = (id) => {
-        deleteSpeciality(id, setBeginDeleteSpeciality)
+        setBeginDeleteSpeciality(true);
+        deleteSpeciality(id)
             .then((res) => {
                     console.log(res);
                     if (res?.status === 200) {
@@ -194,11 +211,36 @@ const SpecialityList = () => {
                         toast.success("Successfully")
                     } else {
                         toast.error(res?.message || res?.data);
+                        setBeginDeleteSpeciality(false);
                     }
                 }
             );
-        setBeginDeleteSpeciality(false);
     }
+
+    const editSpecialityOnOk = (body) => {
+        console.log(body)
+        setBeginEditSpeciality(true);
+        editSpeciality(formValue?.id, body)
+            .then((res) => {
+                if (res.status === 401) {
+                    navigate('/');
+                } else if (res.status === 400) {
+                    toast.error(res?.message || res?.data);
+                } else if (res.status === 200) {
+                    setIsReload(!isReload);
+                    setIsEdit(false);
+                    toast.success("Successfully");
+                    setFormValue({
+                        id: '',
+                        name: '',
+                        educationLanguage: [],
+                        educationForms: [],
+                    })
+                }
+                setBeginEditSpeciality(false);
+            })
+    }
+
     return (
         <div>
             <Form
@@ -229,7 +271,7 @@ const SpecialityList = () => {
                         value: formValue?.educationForms
                     },
                 ]}
-                onFinish={addSpecialityOnSubmit}
+                onFinish={isEdit ? editSpecialityOnOk : addSpecialityOnSubmit}
             >
                 <Form.Item
                     label="Name"
@@ -257,6 +299,7 @@ const SpecialityList = () => {
                     ]}
                 >
                     <Select
+                        defaultValue={formValue?.educationLanguage}
                         allowClear
                         size={"middle"}
                         style={{
@@ -278,6 +321,7 @@ const SpecialityList = () => {
                     ]}
                 >
                     <Select
+                        defaultValue={formValue?.educationForms}
                         allowClear
                         size={"middle"}
                         style={{
@@ -290,8 +334,9 @@ const SpecialityList = () => {
                 </Form.Item>
 
                 <Form.Item label=" ">
-                    <Button type="primary" htmlType="submit" loading={beginAddSpeciality}>
-                        Qo'shish
+                    <Button type="primary" htmlType="submit"
+                            loading={isEdit ? beginEditSpeciality : beginAddSpeciality}>
+                        {isEdit ? 'O\'zgartirish' : 'Qo\'shish'}
                     </Button>
                 </Form.Item>
             </Form>

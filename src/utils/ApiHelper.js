@@ -16,27 +16,22 @@ export const getAllSpeciality = async (setBeginGetData) => {
         console.log(e)
     }
 }
-export const addSpeciality = async (body, setBeginAddSpeciality) => {
+export const addSpeciality = async (body) => {
     try {
-        setBeginAddSpeciality(true);
         const token = localStorage.getItem('token');
-        const response = await axios
+        return await axios
             .post(`${ApiName1}/api/specialty`, body, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-type': 'application/json'
                 }
             });
-        console.log(response);
-
-        return response;
     } catch (e) {
         console.log(e)
     }
 }
-export const deleteSpeciality = async (id, setBeginDeleteSpeciality) => {
+export const deleteSpeciality = async (id) => {
     try {
-        setBeginDeleteSpeciality(true);
         const token = localStorage.getItem('token');
         const response = await axios
             .delete(`${ApiName1}/api/specialty/${id}`, {
@@ -44,8 +39,20 @@ export const deleteSpeciality = async (id, setBeginDeleteSpeciality) => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-        console.log(response);
         return response;
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const editSpeciality = async (id,body) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .put(`${ApiName1}/api/specialty/${id}`, body, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
     } catch (e) {
         console.log(e)
     }
