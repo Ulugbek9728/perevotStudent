@@ -11,9 +11,6 @@ export const getAllSpeciality = async (setBeginGetData) => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-        console.log(response)
-        const {data} = response;
-
         return response;
     } catch (e) {
         console.log(e)
@@ -27,13 +24,28 @@ export const addSpeciality = async (body, setBeginAddSpeciality) => {
             .post(`${ApiName1}/api/specialty`, body, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-type':'application/json'
+                    'Content-type': 'application/json'
                 }
             });
         console.log(response);
-        const {data} = response;
 
-        return data;
+        return response;
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const deleteSpeciality = async (id, setBeginDeleteSpeciality) => {
+    try {
+        setBeginDeleteSpeciality(true);
+        const token = localStorage.getItem('token');
+        const response = await axios
+            .delete(`${ApiName1}/api/specialty/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+        console.log(response);
+        return response;
     } catch (e) {
         console.log(e)
     }

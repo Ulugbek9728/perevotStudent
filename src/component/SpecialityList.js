@@ -1,18 +1,41 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Divider, Form, Input, Select, Space, Table, Tag} from "antd";
-import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
-import {getAllSpeciality} from "../utils/ApiHelper";
+import {DeleteOutlined, EditOutlined, ExclamationCircleFilled} from "@ant-design/icons";
+import {addSpeciality, deleteSpeciality, getAllSpeciality} from "../utils/ApiHelper";
+import {toast} from "react-toastify";
+import {Modal} from 'antd';
+import {useNavigate} from "react-router";
+
+const {confirm} = Modal;
 
 const SpecialityList = () => {
 
     const [formValue, setFormValue] = useState({
         name: '',
-        educationLanguages: [],
+        educationLanguage: [],
         educationForms: [],
     });
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [beginGetData, setBeginGetData] = useState(false);
+    const [beginAddSpeciality, setBeginAddSpeciality] = useState(false);
+    const [beginDeleteSpeciality, setBeginDeleteSpeciality] = useState(false);
+    const [isReload, setIsReload] = useState(false);
 
+    const showDeleteConfirm = (onOk) => {
+        confirm({
+            title: 'Are you sure delete this task?',
+            icon: <ExclamationCircleFilled/>,
+            content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                onOk();
+            },
+
+        });
+    };
     const columns = [
         {
             title: 'Name',
@@ -83,6 +106,8 @@ const SpecialityList = () => {
                     </Button>
                     <Button
                         size="small"
+                        type="dashed"
+                        onClick={() => showDeleteConfirm(()=>deleteSpecialityOnOk(record?.id))}
                         className="border-0"
                         icon={<DeleteOutlined/>}
                     >
@@ -125,21 +150,55 @@ const SpecialityList = () => {
 
     useEffect(() => {
         getAllSpeciality(setBeginGetData)
-            .then(({data, status}) => {
-                console.log(status);
-                const map = data?.map((item) => {
-                    return {
-                        id: item?.id,
-                        name: item?.name,
-                        languages: JSON.parse(item?.educationLanguages),
-                        forms: JSON.parse(item?.educationForms),
-                    }
-                });
-                setData(map);
-                setBeginGetData(false);
+            .then((res) => {
+                if (res.status === 401) {
+                    navigate('/')
+                } else {
+                    const map = res?.data?.map((item) => {
+                        return {
+                            id: item?.id,
+                            name: item?.name,
+                            languages: JSON.parse(item?.educationLanguages),
+                            forms: JSON.parse(item?.educationForms),
+                        }
+                    });
+                    setData(map);
+                    setBeginGetData(false);
+                }
             });
-    }, [])
+    }, [isReload])
 
+    const addSpecialityOnSubmit = (e) => {
+        addSpeciality(e, setBeginAddSpeciality)
+            .then((res) => {
+                    console.log(res);
+                    if (res?.status === 200) {
+                        setIsReload(!isReload);
+                        setBeginAddSpeciality(false);
+                        toast.success("Successfully")
+                    } else {
+                        toast.error(res?.message || res?.data);
+                    }
+                }
+            );
+        setBeginAddSpeciality(false);
+    }
+
+    const deleteSpecialityOnOk = (id) => {
+        deleteSpeciality(id, setBeginDeleteSpeciality)
+            .then((res) => {
+                    console.log(res);
+                    if (res?.status === 200) {
+                        setIsReload(!isReload);
+                        setBeginDeleteSpeciality(false);
+                        toast.success("Successfully")
+                    } else {
+                        toast.error(res?.message || res?.data);
+                    }
+                }
+            );
+        setBeginDeleteSpeciality(false);
+    }
     return (
         <div>
             <Form
@@ -162,17 +221,15 @@ const SpecialityList = () => {
                         value: formValue?.name
                     },
                     {
-                        name: 'educationLanguages',
-                        value: formValue?.educationLanguages
+                        name: 'educationLanguage',
+                        value: formValue?.educationLanguage
                     },
                     {
                         name: 'educationForms',
                         value: formValue?.educationForms
                     },
                 ]}
-                onFinish={(data) => {
-                    console.log(data);
-                }}
+                onFinish={addSpecialityOnSubmit}
             >
                 <Form.Item
                     label="Name"
@@ -191,7 +248,7 @@ const SpecialityList = () => {
 
                 <Form.Item
                     label="Tillari"
-                    name="educationLanguages"
+                    name="educationLanguage"
                     rules={[
                         {
                             required: true,
@@ -202,9 +259,6 @@ const SpecialityList = () => {
                     <Select
                         allowClear
                         size={"middle"}
-                        // defaultValue="a1"
-                        // onChange={(e) => setFormValue({...formValue, educationLanguages: e})}
-                        // value={formValue?.educationLanguages}
                         style={{
                             maxWidth: 600,
                         }}
@@ -214,21 +268,18 @@ const SpecialityList = () => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Turdosh"
+                    label="Oquv shakli"
                     name="educationForms"
                     rules={[
                         {
                             required: true,
-                            message: 'Alternative is required!'
+                            message: 'Education form is required!'
                         },
                     ]}
                 >
                     <Select
                         allowClear
                         size={"middle"}
-                        // defaultValue="a1"
-                        // onChange={(e) => setFormValue({...formValue, educationForms: e})}
-                        // value={formValue?.educationForms}
                         style={{
                             maxWidth: 600,
                         }}
@@ -239,18 +290,19 @@ const SpecialityList = () => {
                 </Form.Item>
 
                 <Form.Item label=" ">
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" loading={beginAddSpeciality}>
                         Qo'shish
                     </Button>
                 </Form.Item>
             </Form>
 
             <Divider>Speciality List</Divider>
+
             <Table
                 loading={beginGetData}
-
                 columns={columns}
-                dataSource={data}/>
+                dataSource={data}
+            />
         </div>
     );
 };
