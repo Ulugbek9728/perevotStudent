@@ -1,0 +1,67 @@
+$mainColor: #418C61;
+.printInfo {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  background-image: url("../../public/logo.png");
+  background-size: 120px;
+  background-repeat: no-repeat;
+  background-position: right 5% top 50px;
+
+  .Ariza{
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .top{
+    display: flex;
+    align-items: center;
+    .userIcon {
+      width: 150px;
+      height: 170px;
+      border: 1px solid black;
+    }
+    .box{
+      margin-left: 20px;
+      .FullName{
+        width: 75%;
+        font-size: 25px;
+        font-weight: 700;
+      }
+      .id{
+        margin-top: 10px;
+        b{
+          margin-right: 15px;
+        }
+      }
+    }
+
+  }
+
+  .line{
+    background-color: $mainColor;
+    height: 5px;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .boxInfo{
+    margin-top: 30px;
+    .title{
+      margin-top: 20px!important;
+      font-weight: 700;
+    }
+    .text{
+      border-bottom: 1px solid $mainColor;
+    }
+  }
+}
+.natija{
+
+  .down{
+    display:flex;
+    margin: 20px auto !important;
+  }
+}

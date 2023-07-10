@@ -3,9 +3,7 @@
     "Title": "Ташкентский государственный технический университет имени Ислама Каримова",
     "profilButton": "Bойти в профиль"
   },
-  "carusel": {
-    "TTJ": "Pезультат"
-  },
+
   "Mesenger": "Cоциальные сети",
   "know-result": "Статус заявления",
   "enter-hemis-id": "Введите \"Hemis\" ID студента",
@@ -26,7 +24,7 @@
   "direction": "Направление",
   "talim-turi": "Ta'lim turi ru",
   "talim-shakli": "Ta'lim shakli ru",
-  "talim-tili": "Ta'lim tili re",
+  "talim-tili": "Ta'lim tili ru",
   "group": "Група",
   "course": "Курс",
   "address": "Адрес",

@@ -1,46 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
+import { useReactToPrint } from 'react-to-print';
 import Footer from "../component/footer";
-import {useTranslation} from "react-i18next";
-import axios from "axios";
-import {ApiName1} from "../APIname1";
+import {PrintInfo} from "../component/printInfo"
+
 import Nav from "../component/nav";
 
 function Natija(props) {
-    const {t} = useTranslation();
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const lang = localStorage.getItem('i18nextLng');
 
-
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({content: () => componentRef.current,});
     return (
-        <>
+        <div className="natija">
             <Nav/>
-            <div className="container loginPage">
-                <div className="row">
-                    <div className="login-page">
-                        <div className="left-side">
-                            <div className="title">
-                                {t('result')}
-                            </div>
-                            <div className="">
 
-                            </div>
-                        </div>
+            <PrintInfo ref={componentRef} />
+            <button className='btn btn-primary down' onClick={handlePrint}>Ma'lumotlarni yuklash</button>
 
-                        <div className="right-side">
-                            <div className="container">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
             <Footer/>
-        </>
+        </div>
     );
 }
 
