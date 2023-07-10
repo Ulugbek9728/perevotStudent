@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
       <BrowserRouter>
-          <Suspense fallback={<span class="loader" />}>
+          <Suspense fallback={<span className="loader" />}>
               {/*<Provider>*/}
                   <App />
               {/*</Provider>*/}
