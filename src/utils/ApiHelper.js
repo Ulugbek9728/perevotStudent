@@ -5,13 +5,12 @@ export const getAllSpeciality = async (setBeginGetData) => {
     try {
         setBeginGetData(true);
         const token = localStorage.getItem('token');
-        const response = await axios
+        return await axios
             .get(`${ApiName1}/api/specialty`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-        return response;
     } catch (e) {
         console.log(e)
     }
@@ -33,13 +32,12 @@ export const addSpeciality = async (body) => {
 export const deleteSpeciality = async (id) => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios
+        return await axios
             .delete(`${ApiName1}/api/specialty/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-        return response;
     } catch (e) {
         console.log(e)
     }
@@ -49,6 +47,20 @@ export const editSpeciality = async (id,body) => {
         const token = localStorage.getItem('token');
         return await axios
             .put(`${ApiName1}/api/specialty/${id}`, body, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getAllSpecialityAlternative = async (specialityId) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .get(`${ApiName1}/api/specialty/alternative/${specialityId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

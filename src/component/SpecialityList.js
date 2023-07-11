@@ -5,6 +5,7 @@ import {addSpeciality, deleteSpeciality, editSpeciality, getAllSpeciality} from 
 import {toast} from "react-toastify";
 import {Modal} from 'antd';
 import {useNavigate} from "react-router";
+import SpecialityAlternativeModal from "./modals/SpecialityAlternativeModal";
 
 const {confirm} = Modal;
 
@@ -18,10 +19,12 @@ const SpecialityList = () => {
     });
     const navigate = useNavigate();
     const [data, setData] = useState([]);
+    const [currentItem, setCurrentItem] = useState({});
     const [beginGetData, setBeginGetData] = useState(false);
     const [beginAddSpeciality, setBeginAddSpeciality] = useState(false);
     const [beginEditSpeciality, setBeginEditSpeciality] = useState(false);
     const [beginDeleteSpeciality, setBeginDeleteSpeciality] = useState(false);
+    const [showAlternativeModal, setShowAlternativeModal] = useState(false);
     const [isReload, setIsReload] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const showDeleteConfirm = (onOk) => {
@@ -95,7 +98,8 @@ const SpecialityList = () => {
                         type="primary"
                         size="small"
                         onClick={() => {
-                            console.log(record)
+                            setCurrentItem(record);
+                            setShowAlternativeModal(true);
                         }}
                     >
                         Show Alternative
@@ -348,6 +352,11 @@ const SpecialityList = () => {
                 columns={columns}
                 dataSource={data}
             />
+            <SpecialityAlternativeModal
+                speciality={currentItem}
+                show={showAlternativeModal}
+                onClose={() => setShowAlternativeModal(false)}
+                onOk={() => setShowAlternativeModal(false)}/>
         </div>
     );
 };
