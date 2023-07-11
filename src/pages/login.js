@@ -46,9 +46,10 @@ Login(props) {
                 }
             }
             setIsButtonLoading(false);
-        }).catch((e) => {
-            if (e.response.status === 403) {
-                setMessage2(e.response.data);
+        }).catch((error) => {
+            console.log(error)
+            if (error.response.status === 403) {
+                setMessage2(error.response.data);
                 setIsButtonLoading(false);
             } else {
                 axios.post(`${ApiName}auth/login`, requestData).then((response) => {
