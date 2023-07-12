@@ -34,7 +34,8 @@ function Ariza(props) {
         educationLang: '',
         educationType: '',
         applicationType: 'CHANGE_SPECIALITY',
-        attachList: []
+        attachList: [],
+        changeLanguage:''
     });
     const [file, setFile] = useState([{
         fileName: '',
@@ -42,7 +43,6 @@ function Ariza(props) {
     }]);
     const [isLoading, setIsLoading] = useState(false);
     const [fileBoolin, setFileBoolin] = useState(false);
-    const [language, setLanguage] = useState(true);
     const [message, setMessage] = useState([]);
     const [message2, setMessage2] = useState('');
     const [sucsessText, setSucsessText] = useState('');
@@ -90,7 +90,7 @@ function Ariza(props) {
                 educationLang: response.data.data.educationLang.name,
                 educationType: response.data.data.educationType.name,
             });
-            axios.post(`${ApiName1}/api/specialty/public/alternative/${response.data.data.specialty.name}`, '').then(
+            axios.get(`${ApiName1}/api/specialty/public/alternative/${response.data.data.specialty.name}`, '').then(
                 (res) => {
                     console.log(res)
                 }).catch((error) => {
@@ -137,9 +137,8 @@ function Ariza(props) {
     }
 
     const handleChangeLen = (value) => {
-        setStudent({...Student, til: value});
+        setStudent({...Student, changeLanguage: value});
     };
-console.log(Student.til)
     const showForm = () => {
         switch (Student?.applicationType) {
             case "CHANGE_LANG": {
@@ -148,7 +147,8 @@ console.log(Student.til)
                           autoComplete="off">
                         <p>{t('faculty')}: <span>{Student.faculty}</span></p>
                         <p>{t('direction')}: <span>{Student.specialty}</span></p>
-
+                        <p>Transklip / zachyotka</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
                         <p>{t('til')}:</p>
                         <Select
                             style={{
@@ -228,6 +228,8 @@ console.log(Student.til)
                                 },
                             ]}
                         />
+                        <p>Transklip / zachyotka</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
                         <p>Sabab:
                             <input className='mx-2' onChange={(e) => {
                                 setFileBoolin(e.target.checked)
@@ -306,12 +308,11 @@ console.log(Student.til)
                                 },
                             ]}
                         />
-                        <p>Sabab:
+                        <p>Transklip / zachyotka</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
+                        <p>Sabab (file yoki text):
                             <input className='mx-2' onChange={(e) => {
-                                setFileBoolin(e.target.checked)
-                            }}
-                                   type="checkbox"/>
-                            file
+                                setFileBoolin(e.target.checked)}} type="checkbox"/>file
                         </p>
                         {
                             fileBoolin ?
@@ -319,9 +320,10 @@ console.log(Student.til)
                                 :
                                 <input className='form-control' type="text"/>
                         }
+                        <p>Pasport ko'piya yuklang</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
 
-
-                        <p>Ariza:</p>
+                        <p>Ariza yuklang:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                     </Form>
                 )
@@ -354,7 +356,12 @@ console.log(Student.til)
                             <p>{t('address')}:
                                 <span>{Student.country} {Student.city} {Student.district}</span>
                             </p>
-                            <p>{t('phone')}: <span>{Student.phone}</span></p>
+                            <p>{t('phone')}:
+                                <br/>
+                                <input onChange={(e)=>{setStudent({
+                                    ...Student, phone:e.target.value})}}
+                                       className='form-control' type="number"/>
+                            </p>
 
                         </div>
 
@@ -365,7 +372,7 @@ console.log(Student.til)
                             }} block options={[
 
                                 {
-                                    label: `${t('direction')}`,
+                                    label: `${t('directionChang')}`,
                                     value: "CHANGE_SPECIALITY"
                                 },
                                 {
@@ -391,7 +398,6 @@ console.log(Student.til)
                         </div>
                     </div>
                 </div>
-
             </div>
             <Footer/>
         </>

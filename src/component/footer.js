@@ -33,18 +33,25 @@ function Footer(props) {
                         </a>
                     </li>
                     <li>
+                        <a className="icon telegram" target="_blank"
+                           href="https://t.me/ToshDTU_Matbuot_Xizmati">
+                            <span className="tooltip">Telegram</span>
+                            <span><i className="fab fa-telegram"/></span>
+                        </a>
+                    </li>
+                    <li>
                         <a className="icon youtube" target="_blank"
                            href="https://www.youtube.com/channel/UCVeUzoJ6466s6yh4LPPS-zA">
                             <span className="tooltip">Youtube</span>
-                            <span><i className="fab fa-youtube"></i></span>
+                            <span><i className="fab fa-youtube"/></span>
                         </a>
 
                     </li>
                     <li>
                         <a className="icon telegram" target="_blank"
                            href="https://t.me/ToshDTU_Matbuot_Xizmati">
-                            <span className="tooltip">Telegram</span>
-                            <span><i className="fab fa-telegram"></i></span>
+                            <span className="tooltip">Operator</span>
+                            <span><i className="fa-solid fa-headset"/></span>
                         </a>
                     </li>
 
@@ -52,9 +59,9 @@ function Footer(props) {
             </div>
             <div className="center">
 
-                <p>
+                <p><a style={{color:"white"}} href="#" target={"_blank"}>
                     RTTM-2023
-                </p>
+                </a></p>
             </div>
         </div>
     );

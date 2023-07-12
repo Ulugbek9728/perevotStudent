@@ -3,7 +3,6 @@
     "Title": " Tashkent State Technical University named after Islam Karimov",
     "profilButton": "Login to profile"
   },
-
   "Mesenger": "Social networks",
   "know-result": "Application status",
   "enter-hemis-id": "Enter \"Hemis\" student ID",
@@ -13,7 +12,7 @@
   "give-reason-for-ttj": "Ta'limni ko'chirish turini tanlang en",
   "password": "Password",
   "login": "Login",
-  "til": "Language",
+  "til": "Changing the language of instruction",
   "salom": "HELLO!",
   "TTJxushKelibsiz": "Welcome to the online application platform for students!",
   "TTJeslatma": "Note for students: Dear students, if you want to apply for a place in the student accommodation in the new academic year, please pay attention to the following:",
@@ -22,7 +21,8 @@
   "eslatma3": "-if you make a mistake while submitting an online application, you can contact the number +998944872284.",
   "faculty": "Faculty",
   "direction": "Направление",
-  "recover": "Tiklash en",
+  "directionChang": "Change education",
+  "recover": "Restore education",
   "talim-turi": "Ta'lim turi en",
   "talim-shakli": "Ta'lim shakli en",
   "talim-tili": "Ta'lim tili en",
