@@ -69,3 +69,18 @@ export const getAllSpecialityAlternative = async (specialityId) => {
         console.log(e)
     }
 }
+
+export const addSpecialityAlternative = async (body) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .post(`${ApiName1}/api/specialty/alternative`, body, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-type': 'application/json'
+                }
+            });
+    } catch (e) {
+        console.log(e)
+    }
+}
