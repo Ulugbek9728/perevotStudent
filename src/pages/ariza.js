@@ -178,53 +178,120 @@ function Ariza(props) {
         switch (Student?.applicationType) {
             case "CHANGE_LANG": {
                 return (
-                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
-                          autoComplete="off">
-                        <Form.Item>
+                    <Form
+                        name="dynamic_form_nest_item"
+                        onFinish={onFinish}
+                        autoComplete="off"
+                    >
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Telefon raqam kiritilishi shart!',
+                                    whitespace: true,
+                                    max: 12,
+                                    min: 12
+                                }
+                            ]}
+                            name="phone"
+                        >
                             <p>{t('phone')}:
                                 <br/>
-                                <input onChange={(e) => {
-                                    setStudent({...Student, phone: e.target.value})
-                                }}
-                                       className='form-control' type="number"/>
+                                <input
+                                    onChange={(e) => {
+                                        setStudent({...Student, phone: e.target.value})
+                                    }}
+                                    className='form-control'
+                                    type="number"
+                                />
                             </p>
                         </Form.Item>
+
                         <p>1) {t('Transklip')}</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Transklip / zachyotka file tanlanishi kerak!'
+                                }
+                            ]}
+                            name="recordBookId"
+                        >
+                            <input
+                                className='form-control'
+                                type="file"
+                                accept="application/pdf"
+                            />
+                        </Form.Item>
+
                         <p>2) {t('til')}:</p>
-                        <Select
-                            style={{
-                                width: "100%",
-                            }}
-                            onChange={handleChangeLen}
-                            allowClear
-                            options={[
+                        <Form.Item
+                            rules={[
                                 {
-                                    value: 'Uz',
-                                    label: 'uz',
-                                },
-                                {
-                                    value: 'Ru',
-                                    label: 'ru',
-                                },]}/>
-                        <p>3) {t('sabab')}:
-                            <input className='mx-2' onChange={(e) => {
-                                setFileBoolin(e.target.checked)
-                            }}
-                                   type="checkbox"/>
-                            file
-                        </p>
-                        {
-                            fileBoolin ?
-                                <input className='form-control' type="file" accept="application/pdf"/>
-                                :
-                                <input className='form-control' type="text"/>
-                        }
+                                    required: true,
+                                    message: 'Ta\'lim tilini tanlash shart!'
+                                }
+                            ]}
+                            name="newEducationLang"
+                        >
+                            <Select
+                                style={{
+                                    width: "100%",
+                                }}
+                                onChange={handleChangeLen}
+                                allowClear
+                                options={[
+                                    {
+                                        value: 'Uz',
+                                        label: 'uz',
+                                    },
+                                    {
+                                        value: 'Ru',
+                                        label: 'ru',
+                                    },
+                                ]
+                                }
+                            />
+                        </Form.Item>
+                        <Form.Item>
+                            <p>3) {t('sabab')}:
+                                <input className='mx-2' onChange={(e) => {
+                                    setFileBoolin(e.target.checked)
+                                }}
+                                       type="checkbox"/>
+                                file
+                            </p>
+                            {
+                                fileBoolin ?
+                                    <input className='form-control' type="file" accept="application/pdf"/>
+                                    :
+                                    <input className='form-control' type="text"/>
+                            }
+                        </Form.Item>
 
                         <p>4) {t('pasport')}</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
+                            <input className='form-control' type="file" accept="application/pdf"/>
+                        </Form.Item>
+
                         <p>5) {t('ariza')}:</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
+                        <Form.Item
+                            rules={
+                                [
+                                    {
+                                        required: true
+                                    }
+                                ]
+                            }
+                        >
+                            <input className='form-control' type="file" accept="application/pdf"/>
+                        </Form.Item>
 
                         <Form.Item className='d-flex justify-content-center mt-3'>
                             <Button className='signUp' htmlType="submit">{t('send')}</Button>
@@ -414,8 +481,15 @@ function Ariza(props) {
 
 
                         <p>7) {t('ariza')}:</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
-
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
+                            <input className='form-control' type="file" accept="application/pdf"/>
+                        </Form.Item>
                         <Form.Item className='d-flex justify-content-center mt-3'>
                             <Button className='signUp' htmlType="submit">{t('send')}</Button>
                         </Form.Item>
@@ -426,7 +500,13 @@ function Ariza(props) {
                 return (
                     <Form name="dynamic_form_nest_item" onFinish={onFinish}
                           autoComplete="off">
-                        <Form.Item>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
                             <p>{t('phone')}:
                                 <br/>
                                 <input onChange={(e) => {
@@ -438,77 +518,131 @@ function Ariza(props) {
                             </p>
                         </Form.Item>
                         <p>1) {t('direction')}:</p>
-                        <Select
-                            style={{
-                                width: "100%",
-                            }}
-                            onChange={handleChangeLen}
-                            allowClear
-                            options={[
+                        <Form.Item
+                            rules={[
                                 {
-                                    value: 'uz',
-                                    label: 'Uz',
-                                },
-                                {
-                                    value: 'ru',
-                                    label: 'Ru',
-                                },
+                                    required: true
+                                }
                             ]}
-                        />
+                        >
+                            <Select
+                                style={{
+                                    width: "100%",
+                                }}
+                                onChange={handleChangeLen}
+                                allowClear
+                                options={[
+                                    {
+                                        value: 'uz',
+                                        label: 'Uz',
+                                    },
+                                    {
+                                        value: 'ru',
+                                        label: 'Ru',
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+
                         <p>2) {t('talim-shakli')}:</p>
-                        <Select
-                            style={{
-                                width: "100%",
-                            }}
-                            onChange={handleChangeLen}
-                            allowClear
-                            options={[
+                        <Form.Item
+                            rules={[
                                 {
-                                    value: 'uz',
-                                    label: 'Uz',
-                                },
-                                {
-                                    value: 'ru',
-                                    label: 'Ru',
-                                },
+                                    required: true
+                                }
                             ]}
-                        />
+                        >
+                            <Select
+                                style={{
+                                    width: "100%",
+                                }}
+                                onChange={handleChangeLen}
+                                allowClear
+                                options={[
+                                    {
+                                        value: 'uz',
+                                        label: 'Uz',
+                                    },
+                                    {
+                                        value: 'ru',
+                                        label: 'Ru',
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+
                         <p>3) {t('til')}:</p>
-                        <Select
-                            style={{
-                                width: "100%",
-                            }}
-                            onChange={handleChangeLen}
-                            allowClear
-                            options={[
+                        <Form.Item
+                            rules={[
                                 {
-                                    value: 'uz',
-                                    label: 'Uz',
-                                },
-                                {
-                                    value: 'ru',
-                                    label: 'Ru',
-                                },
+                                    required: true
+                                }
                             ]}
-                        />
+                        >
+                            <Select
+                                style={{
+                                    width: "100%",
+                                }}
+                                onChange={handleChangeLen}
+                                allowClear
+                                options={[
+                                    {
+                                        value: 'uz',
+                                        label: 'Uz',
+                                    },
+                                    {
+                                        value: 'ru',
+                                        label: 'Ru',
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+
                         <p>4) {t('Transklip')}</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
-                        <p>5) {t('sabab')}:
-                            <input className='mx-2' onChange={(e) => {
-                                setFileBoolin(e.target.checked)
-                            }} type="checkbox"/>file
-                        </p>
-                        {
-                            fileBoolin ?
-                                <input className='form-control' type="file" accept="application/pdf"/>
-                                :
-                                <input className='form-control' type="text"/>
-                        }
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
+                            <input className='form-control' type="file" accept="application/pdf"/>
+                        </Form.Item>
+                        <Form.Item>
+                            <p>5) {t('sabab')}:
+                                <input className='mx-2' onChange={(e) => {
+                                    setFileBoolin(e.target.checked)
+                                }} type="checkbox"/>file
+                            </p>
+                            {
+                                fileBoolin ?
+                                    <input className='form-control' type="file" accept="application/pdf"/>
+                                    :
+                                    <input className='form-control' type="text"/>
+                            }
+                        </Form.Item>
+
                         <p>6) {t('pasport')}</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
+                            <input className='form-control' type="file" accept="application/pdf"/>
+                        </Form.Item>
 
                         <p>7) {t('ariza')}:</p>
-                        <input className='form-control' type="file" accept="application/pdf"/>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
+                            <input className='form-control' type="file" accept="application/pdf"/>
+                        </Form.Item>
 
                         <Form.Item className='d-flex justify-content-center mt-3'>
                             <Button className='signUp' htmlType="submit">{t('send')}</Button>
@@ -519,6 +653,7 @@ function Ariza(props) {
         }
     };
     const showInfo = () => {
+        // eslint-disable-next-line default-case
         switch (Student?.applicationType) {
             case "CHANGE_LANG": {
                 return (
