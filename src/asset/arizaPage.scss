@@ -5,8 +5,8 @@ $mainColor: #418C61;
 .ArizaPage{
   width: 100vw;
   min-height: 80vh;
-  margin: 0 auto;
-  padding: 0 89px;
+    margin: 0 auto;
+  padding: 0 50px;
   background-color: inherit;
   .login-page{
     width: 100%;
@@ -16,7 +16,7 @@ $mainColor: #418C61;
     overflow: hidden;
     padding: 0;
     .left-side{
-      width: 50%;
+      width: 33%;
       background-color: $mainColor;
       padding: 20px;
       box-sizing: border-box;
@@ -56,18 +56,39 @@ $mainColor: #418C61;
         }
       }
     }
-    .right-side{
-      width: 50%;
+    .center{
+      width: 33%;
       height: 100%;
       background-color: white;
       padding: 20px;
-      overflow: hidden;
       h5{
         font-size: 20px;
         font-weight: 600;
         color: $mainColor;
         text-align: center;
       }
+      p{
+        width: 100%;
+        margin-bottom: 5px;
+        font-weight: 700;
+        span{
+          font-weight: 500;
+          color: black;
+          padding: 5px;
+          border-radius: 3px;
+          width: 100%;
+          display: flex;
+        }
+      }
+    }
+    .right-side{
+
+      width: 33%;
+      height: 100%;
+      background-color: $mainColor;
+      padding: 20px;
+      overflow: hidden;
+
       .container{
         width: 100%;
         min-height: 110px;
@@ -75,11 +96,11 @@ $mainColor: #418C61;
         padding: 10px;
         p{
           width: 100%;
-          color: $mainColor;
+          color: white;
           margin-bottom: 5px;
           span{
-            background-color: $mainColor;
-            color: white;
+            background-color: white;
+            color: black;
             padding: 5px;
             border-radius: 3px;
             width: 100%;
@@ -90,8 +111,8 @@ $mainColor: #418C61;
       .signUp{
         width: 200px;
         height: 50px;
-        background-color: $mainColor;
-        color: white;
+        background-color: white;
+        color: $mainColor;
         border: none;
         cursor: pointer;
         border-radius: 5px;

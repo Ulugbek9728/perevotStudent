@@ -47,12 +47,7 @@ Login(props) {
             }
             setIsButtonLoading(false);
         }).catch((error) => {
-            console.log(error)
             if (error.message === "Request failed with status code 400") {
-                setMessage2(error.response.data);
-                setIsButtonLoading(false);
-            }
-            else {
                 axios.post(`${ApiName}auth/login`, requestData).then((response) => {
                     localStorage.setItem("token", response.data.data.token);
                     navigate("/Submit");
@@ -62,6 +57,9 @@ Login(props) {
                     setMessage2('Login yoki parol xato');
                 })
             }
+            else {
+
+            }
         })
     }
 
@@ -70,7 +68,6 @@ Login(props) {
         notify();
         setMessage2('')
     }, [message2]);
-
 
     function notify() {
         if (message !== '') {

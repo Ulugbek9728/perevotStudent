@@ -165,6 +165,8 @@ function Ariza(props) {
                                     value: 'Ru',
                                     label: 'ru',
                                 },]}/>
+                        <p>Pasport nusxasini yuklang</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
                         <p>Ariza:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                     </Form>
@@ -243,6 +245,8 @@ function Ariza(props) {
                                 :
                                 <input className='form-control' type="text"/>
                         }
+                        <p>Pasport nusxasini yuklang</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
 
 
                         <p>Ariza:</p>
@@ -320,10 +324,10 @@ function Ariza(props) {
                                 :
                                 <input className='form-control' type="text"/>
                         }
-                        <p>Pasport ko'piya yuklang</p>
+                        <p>Pasport nusxasini yuklang</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
 
-                        <p>Ariza yuklang:</p>
+                        <p>Ariza:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                     </Form>
                 )
@@ -333,7 +337,7 @@ function Ariza(props) {
     return (
         <>
             <Nav/>
-            <div className='container ArizaPage'>
+            <div className='container-fluid ArizaPage'>
                 <div className="row">
                     <div className="login-page">
                         <div className="left-side">
@@ -365,7 +369,7 @@ function Ariza(props) {
 
                         </div>
 
-                        <div className="right-side overflow-auto">
+                        <div className="center">
                             <h5>{t('give-reason-for-ttj')}</h5>
                             <Segmented onChange={(e) => {
                                 setStudent({...Student, applicationType: e})
@@ -384,6 +388,43 @@ function Ariza(props) {
                                     value: "CHANGE_LANG"
                                 },
                             ]}/>
+
+                            <h5 className="mt-4">TALABALAR UCHUN YO‘RIQNOMA</h5>
+                            <p>
+                                {t('direction')}
+                                <span>
+                                    O‘zi o‘qigan ta’lim yo’nalishi yoki unga turdosh bo’lgan ta’lim yo’nalishini tanlash;
+                                </span>
+                            </p>
+                            <p>
+                                {t('talim-shakli')}
+                                <span>
+                                    Sirtqi, kunduzgi va kechki ta’lim shakllaridan birini tanlash;
+                                </span>
+                            </p>
+                            <p>
+                                {t('til')}
+                                <span>
+                                    Ta’lim tilini tanlash ya’ni o’zbek yoki rus tilini ta’nlash;
+                                </span>
+                            </p>
+                            <p>
+                                Sabab
+                                <span>
+                                    O’qishini ko’chirish sababi kiritiladi lozim
+                                    bo’lsa korxona tomonidan olingan xatni ilova sifati kiritiladi;
+                                </span>
+                            </p>
+                            <p>
+                                Pasport nusxasini yuklash
+                                <span>
+                                   Talabaning shaxsini tasdiqlovchi pasport nusxasini yuklanadi;
+                                </span>
+                            </p>
+                        </div>
+
+                        <div className="right-side overflow-auto">
+
 
                             <div className="container p-0">
                                 {showForm()}
