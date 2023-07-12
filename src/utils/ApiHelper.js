@@ -42,7 +42,7 @@ export const deleteSpeciality = async (id) => {
         console.log(e)
     }
 }
-export const editSpeciality = async (id,body) => {
+export const editSpeciality = async (id, body) => {
     try {
         const token = localStorage.getItem('token');
         return await axios
@@ -55,7 +55,6 @@ export const editSpeciality = async (id,body) => {
         console.log(e)
     }
 }
-
 export const getAllSpecialityAlternative = async (specialityId) => {
     try {
         const token = localStorage.getItem('token');
@@ -69,7 +68,6 @@ export const getAllSpecialityAlternative = async (specialityId) => {
         console.log(e)
     }
 }
-
 export const addSpecialityAlternative = async (body) => {
     try {
         const token = localStorage.getItem('token');
@@ -80,6 +78,28 @@ export const addSpecialityAlternative = async (body) => {
                     'Content-type': 'application/json'
                 }
             });
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getStudentInfo = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .get(`${ApiName1}/api/student/account/me`, {
+                params: {
+                    'token': `${token}`
+                }
+            });
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const getAlternativePublicList = async (name) => {
+    try {
+        return await axios
+            .get(`${ApiName1}/api/specialty/public/alternative/${name}`, {});
     } catch (e) {
         console.log(e)
     }
