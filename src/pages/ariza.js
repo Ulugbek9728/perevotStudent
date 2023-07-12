@@ -6,6 +6,7 @@ import {useNavigate} from "react-router";
 import {toast} from "react-toastify";
 import Nav from "../component/nav";
 import Footer from "../component/footer";
+import ariza from "./Ариза переводга намуна.pdf"
 import {getAlternativePublicList, getStudentInfo} from "../utils/ApiHelper";
 
 
@@ -179,23 +180,18 @@ function Ariza(props) {
                 return (
                     <Form name="dynamic_form_nest_item" onFinish={onFinish}
                           autoComplete="off">
-                        <p>{t('faculty')}: <span>{Student.faculty}</span></p>
-                        <p>{t('direction')}: <span>{Student.specialty}</span></p>
-
                         <Form.Item>
                             <p>{t('phone')}:
                                 <br/>
                                 <input onChange={(e) => {
-                                    setStudent({
-                                        ...Student, phone: e.target.value
-                                    })
+                                    setStudent({...Student, phone: e.target.value})
                                 }}
                                        className='form-control' type="number"/>
                             </p>
                         </Form.Item>
-                        <p>Transklip / zachyotka</p>
+                        <p>1) {t('Transklip')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
-                        <p>{t('til')}:</p>
+                        <p>2) {t('til')}:</p>
                         <Select
                             style={{
                                 width: "100%",
@@ -211,8 +207,7 @@ function Ariza(props) {
                                     value: 'Ru',
                                     label: 'ru',
                                 },]}/>
-
-                        <p>Sabab:
+                        <p>3) {t('sabab')}:
                             <input className='mx-2' onChange={(e) => {
                                 setFileBoolin(e.target.checked)
                             }}
@@ -226,13 +221,13 @@ function Ariza(props) {
                                 <input className='form-control' type="text"/>
                         }
 
-                        <p>Pasport nusxasini yuklang</p>
+                        <p>4) {t('pasport')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
-                        <p>Ariza:</p>
+                        <p>5) {t('ariza')}:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
 
-                        <Form.Item>
-                            <Button htmlType="submit">{t('send')}</Button>
+                        <Form.Item className='d-flex justify-content-center mt-3'>
+                            <Button className='signUp' htmlType="submit">{t('send')}</Button>
                         </Form.Item>
                     </Form>
                 )
@@ -278,7 +273,7 @@ function Ariza(props) {
                             </p>
                         </Form.Item>
 
-                        <p>{t('direction')}:</p>
+                        <p>1) {t('direction')}:</p>
                         <Form.Item
                             rules={[
                                 {
@@ -288,8 +283,9 @@ function Ariza(props) {
                             ]}
                             name="changeSpecialtyID"
                         >
+
                             <Select
-                                placeholder="O'tmoqchi bo'lgan yo'nalishni tanlang..."
+                                placeholder={t('direction')}
                                 name="changeSpecialtyID"
                                 style={{
                                     width: "100%",
@@ -309,7 +305,7 @@ function Ariza(props) {
                             />
                         </Form.Item>
 
-                        <p>{t('talim-shakli')}:</p>
+                        <p>2) {t('talim-shakli')}:</p>
                         <Form.Item
                             rules={[
                                 {
@@ -321,7 +317,7 @@ function Ariza(props) {
 
                         >
                             <Select
-                                placeholder="Talim shaklini tanlang..."
+                                placeholder={t('talim-shakli')}
                                 style={{
                                     width: "100%",
                                 }}
@@ -333,7 +329,7 @@ function Ariza(props) {
                             />
                         </Form.Item>
 
-                        <p>{t('til')}:</p>
+                        <p>3) {t('til')}:</p>
                         <Form.Item
                             rules={[
                                 {
@@ -347,7 +343,7 @@ function Ariza(props) {
                                 style={{
                                     width: "100%",
                                 }}
-                                placeholder="Ta'lim tilini tanlang..."
+                                placeholder={t('til')}
                                 onChange={(e) => {
                                     setStudent({...Student, newEducationLang: e})
                                 }}
@@ -356,7 +352,7 @@ function Ariza(props) {
                             />
                         </Form.Item>
 
-                        <p>Transklip / zachyotka</p>
+                        <p>4) {t('Transklip')}</p>
                         <Form.Item
                             rules={[
                                 {
@@ -382,7 +378,7 @@ function Ariza(props) {
                             ]}
                             name={fileBoolin ? "reasonFileId" : "reasonText"}
                         >
-                            <p>Sabab:
+                            <p>5) {t('sabab')}:
                                 <input
                                     className='mx-2'
                                     onChange={(e) => {
@@ -399,7 +395,7 @@ function Ariza(props) {
                                     <input className='form-control' type="text"/>
                             }
                         </Form.Item>
-                        <p>Pasport nusxasini yuklang</p>
+                        <p>6) {t('pasport')}</p>
                         <Form.Item
                             rules={[
                                 {
@@ -417,11 +413,11 @@ function Ariza(props) {
                         </Form.Item>
 
 
-                        <p>Ariza:</p>
+                        <p>7) {t('ariza')}:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
 
-                        <Form.Item>
-                            <Button htmlType="submit">{t('send')}</Button>
+                        <Form.Item className='d-flex justify-content-center mt-3'>
+                            <Button className='signUp' htmlType="submit">{t('send')}</Button>
                         </Form.Item>
                     </Form>
                 )
@@ -441,7 +437,7 @@ function Ariza(props) {
                                        className='form-control' type="number"/>
                             </p>
                         </Form.Item>
-                        <p>{t('direction')}:</p>
+                        <p>1) {t('direction')}:</p>
                         <Select
                             style={{
                                 width: "100%",
@@ -459,7 +455,7 @@ function Ariza(props) {
                                 },
                             ]}
                         />
-                        <p>{t('talim-shakli')}:</p>
+                        <p>2) {t('talim-shakli')}:</p>
                         <Select
                             style={{
                                 width: "100%",
@@ -477,7 +473,7 @@ function Ariza(props) {
                                 },
                             ]}
                         />
-                        <p>{t('til')}:</p>
+                        <p>3) {t('til')}:</p>
                         <Select
                             style={{
                                 width: "100%",
@@ -495,9 +491,9 @@ function Ariza(props) {
                                 },
                             ]}
                         />
-                        <p>Transklip / zachyotka</p>
+                        <p>4) {t('Transklip')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
-                        <p>Sabab (file yoki text):
+                        <p>5) {t('sabab')}:
                             <input className='mx-2' onChange={(e) => {
                                 setFileBoolin(e.target.checked)
                             }} type="checkbox"/>file
@@ -508,17 +504,72 @@ function Ariza(props) {
                                 :
                                 <input className='form-control' type="text"/>
                         }
-                        <p>Pasport nusxasini yuklang</p>
+                        <p>6) {t('pasport')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
 
-                        <p>Ariza:</p>
+                        <p>7) {t('ariza')}:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
+
+                        <Form.Item className='d-flex justify-content-center mt-3'>
+                            <Button className='signUp' htmlType="submit">{t('send')}</Button>
+                        </Form.Item>
                     </Form>
                 )
             }
         }
-    }
+    };
+    const showInfo = () => {
+        switch (Student?.applicationType) {
+            case "CHANGE_LANG": {
+                return (
+                    <div>
+                        <p>1) {t('Transklip')}<span>{t('TransklipText')}</span></p>
+                        <p>2) {t('til')}<span>{t('tilText')}</span></p>
+                        <p>3) {t('sabab')}<span>{t('sababText')}</span></p>
+                        <p>4) {t('pasport')}<span>{t('pasportText')}</span></p>
+                        <p>5) {t('ariza')}
+                            <a href={ariza} target={"_blank"}> {t('namuna')}</a>
+                            <span>{t('arizaText')}</span>
+                        </p>
+                    </div>
+                )
+            }
+            case "CHANGE_SPECIALITY": {
+                return (
+                    <div>
+                        <p>1) {t('direction')}<span>{t('directionText')}</span></p>
+                        <p>2) {t('talim-shakli')}<span>{t('talim-shakliText')}</span></p>
+                        <p>3) {t('til')}<span>{t('tilText')}</span></p>
+                        <p>4) {t('Transklip')}<span>{t('TransklipText')}</span></p>
+                        <p>5) {t('sabab')}<span>{t('sababText')}</span></p>
+                        <p>6) {t('pasport')}<span>{t('pasportText')}</span></p>
 
+                        <p>7) {t('ariza')}
+                            <a href={ariza} target={"_blank"}> {t('namuna')}</a>
+                            <span>{t('arizaText')}</span>
+                        </p>
+                    </div>
+                )
+            }
+            case "RECOVER": {
+                return (
+                    <div>
+                        <p>1) {t('direction')}<span>{t('directionText')}</span></p>
+                        <p>2) {t('talim-shakli')}<span>{t('talim-shakliText')}</span></p>
+                        <p>3) {t('til')}<span>{t('tilText')}</span></p>
+                        <p>4) {t('Transklip')}<span>{t('TransklipText')}</span></p>
+                        <p>5) {t('sabab')}<span>{t('sababText1')}</span></p>
+                        <p>6) {t('pasport')}<span>{t('pasportText')}</span></p>
+
+                        <p>7) {t('ariza')}
+                            <a href={ariza} target={"_blank"}> {t('namuna')}</a>
+                            <span>{t('arizaText')}</span>
+                        </p>
+                    </div>
+                )
+            }
+        }
+    };
     return (
         <>
             <Nav/>
@@ -545,16 +596,6 @@ function Ariza(props) {
                             <p>{t('address')}:
                                 <span>{Student.country} {Student.city} {Student.district}</span>
                             </p>
-                            <p>{t('phone')}:
-                                <br/>
-                                <input onChange={(e) => {
-                                    setStudent({
-                                        ...Student, phone: e.target.value
-                                    })
-                                }}
-                                       className='form-control' type="number"/>
-                            </p>
-
                         </div>
 
                         <div className="center">
@@ -580,48 +621,14 @@ function Ariza(props) {
                                 ]}/>
 
                             <h5 className="mt-4">TALABALAR UCHUN YO‘RIQNOMA</h5>
-                            <p>
-                                {t('direction')}
-                                <span>
-                                    O‘zi o‘qigan ta’lim yo’nalishi yoki unga turdosh bo’lgan ta’lim yo’nalishini tanlash;
-                                </span>
-                            </p>
-                            <p>
-                                {t('talim-shakli')}
-                                <span>
-                                    Sirtqi, kunduzgi va kechki ta’lim shakllaridan birini tanlash;
-                                </span>
-                            </p>
-                            <p>
-                                {t('til')}
-                                <span>
-                                    Ta’lim tilini tanlash ya’ni o’zbek yoki rus tilini ta’nlash;
-                                </span>
-                            </p>
-                            <p>
-                                Sabab
-                                <span>
-                                    O’qishini ko’chirish sababi kiritiladi lozim
-                                    bo’lsa korxona tomonidan olingan xatni ilova sifati kiritiladi;
-                                </span>
-                            </p>
-                            <p>
-                                Pasport nusxasini yuklash
-                                <span>
-                                   Talabaning shaxsini tasdiqlovchi pasport nusxasini yuklanadi;
-                                </span>
-                            </p>
+                            {showInfo()}
                         </div>
 
                         <div className="right-side overflow-auto">
-                            <div className="container p-0">
+
+
+                            <div>
                                 {showForm()}
-                            </div>
-                            <div className="d-flex justify-content-center">
-                                <Button loading={isLoading} className="signUp"
-                                        onClick={postStudent}>
-                                    {t('send')}
-                                </Button>
                             </div>
                         </div>
                     </div>

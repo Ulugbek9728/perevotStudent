@@ -8,7 +8,6 @@ import {
 import { get } from "lodash";
 import flaguzbekistan from "../img/uz.svg"
 import flagrussia from "../img/russia.svg"
-import flagus from "../img/us.svg"
 import { useTranslation } from "react-i18next";
 
 
@@ -26,10 +25,6 @@ const LanguageDropdown = () => {
       label: "Русский",
       flag: flagrussia,
     },
-    en: {
-      label: "English",
-      flag: flagus,
-    }
   };
 
   useEffect(() => {
