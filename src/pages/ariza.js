@@ -44,6 +44,7 @@ function Ariza(props) {
             reasonFileId: null,
             reasonText: '',
             passportPhotoId: null,
+            applicationFileId: null,
         });
     const [file, setFile] = useState([{
         fileName: '',
@@ -255,10 +256,12 @@ function Ariza(props) {
                         </Form.Item>
                         <Form.Item>
                             <p>3) {t('sabab')}:
-                                <input className='mx-2' onChange={(e) => {
-                                    setFileBoolin(e.target.checked)
-                                }}
-                                       type="checkbox"/>
+                                <input
+                                    className='mx-2'
+                                    onChange={(e) => {
+                                        setFileBoolin(e.target.checked)
+                                    }}
+                                    type="checkbox"/>
                                 file
                             </p>
                             {
@@ -437,17 +440,12 @@ function Ariza(props) {
                         </Form.Item>
 
                         <Form.Item
-                            rules={[
-                                {
-                                    required: true,
-                                    message: `Sabab ${fileBoolin ? 'tanlanishi' : 'kiritilishi'}kerak!`
-                                }
-                            ]}
                             name={fileBoolin ? "reasonFileId" : "reasonText"}
                         >
                             <p>5) {t('sabab')}:
                                 <input
                                     className='mx-2'
+                                    defaultValue={false}
                                     onChange={(e) => {
                                         setFileBoolin(e.target.checked)
                                     }}
@@ -484,9 +482,11 @@ function Ariza(props) {
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: "Ariza yuklash kerak!"
                                 }
                             ]}
+                            name="applicationFileId"
                         >
                             <input className='form-control' type="file" accept="application/pdf"/>
                         </Form.Item>
@@ -629,6 +629,7 @@ function Ariza(props) {
                                     required: true
                                 }
                             ]}
+                            name="passportFileId"
                         >
                             <input className='form-control' type="file" accept="application/pdf"/>
                         </Form.Item>
@@ -637,9 +638,11 @@ function Ariza(props) {
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Ariza yuklanishi kerak!'
                                 }
                             ]}
+                            name="applicationFileId"
                         >
                             <input className='form-control' type="file" accept="application/pdf"/>
                         </Form.Item>
