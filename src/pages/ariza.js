@@ -33,6 +33,7 @@ function Ariza(props) {
         educationForm: '',
         educationLang: '',
         educationType: '',
+        applicationType: 'CHANGE_SPECIALITY',
         attachList: []
     });
     const [file, setFile] = useState([{
@@ -89,8 +90,8 @@ function Ariza(props) {
                 educationLang: response.data.data.educationLang.name,
                 educationType: response.data.data.educationType.name,
             });
-            axios.post(`${ApiName1}/api/specialty/public/alternative/${response.data.data.specialty.name}`,'').then(
-                (res)=>{
+            axios.post(`${ApiName1}/api/specialty/public/alternative/${response.data.data.specialty.name}`, '').then(
+                (res) => {
                     console.log(res)
                 }).catch((error) => {
                 console.log(error)
@@ -135,10 +136,198 @@ function Ariza(props) {
         // })
     }
 
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
+    const handleChangeLen = (value) => {
+        setStudent({...Student, til: value});
     };
+console.log(Student.til)
+    const showForm = () => {
+        switch (Student?.applicationType) {
+            case "CHANGE_LANG": {
+                return (
+                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
+                          autoComplete="off">
+                        <p>{t('faculty')}: <span>{Student.faculty}</span></p>
+                        <p>{t('direction')}: <span>{Student.specialty}</span></p>
 
+                        <p>{t('til')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'Uz',
+                                    label: 'uz',
+                                },
+                                {
+                                    value: 'Ru',
+                                    label: 'ru',
+                                },]}/>
+                        <p>Ariza:</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
+                    </Form>
+                )
+            }
+            case "CHANGE_SPECIALITY": {
+                return (
+                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
+                          autoComplete="off">
+                        <p>{t('direction')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'uz',
+                                    label: 'Uz',
+                                },
+                                {
+                                    value: 'ru',
+                                    label: 'Ru',
+                                },
+                            ]}
+                        />
+                        <p>{t('talim-shakli')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'uz',
+                                    label: 'Uz',
+                                },
+                                {
+                                    value: 'ru',
+                                    label: 'Ru',
+                                },
+                            ]}
+                        />
+                        <p>{t('til')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'uz',
+                                    label: 'Uz',
+                                },
+                                {
+                                    value: 'ru',
+                                    label: 'Ru',
+                                },
+                            ]}
+                        />
+                        <p>Sabab:
+                            <input className='mx-2' onChange={(e) => {
+                                setFileBoolin(e.target.checked)
+                            }}
+                                   type="checkbox"/>
+                            file
+                        </p>
+                        {
+                            fileBoolin ?
+                                <input className='form-control' type="file" accept="application/pdf"/>
+                                :
+                                <input className='form-control' type="text"/>
+                        }
+
+
+                        <p>Ariza:</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
+                    </Form>
+                )
+            }
+            case "RECOVER": {
+                return (
+                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
+                          autoComplete="off">
+                        <p>{t('direction')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'uz',
+                                    label: 'Uz',
+                                },
+                                {
+                                    value: 'ru',
+                                    label: 'Ru',
+                                },
+                            ]}
+                        />
+                        <p>{t('talim-shakli')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'uz',
+                                    label: 'Uz',
+                                },
+                                {
+                                    value: 'ru',
+                                    label: 'Ru',
+                                },
+                            ]}
+                        />
+                        <p>{t('til')}:</p>
+                        <Select
+                            style={{
+                                width: "100%",
+                            }}
+                            onChange={handleChangeLen}
+                            allowClear
+                            options={[
+                                {
+                                    value: 'uz',
+                                    label: 'Uz',
+                                },
+                                {
+                                    value: 'ru',
+                                    label: 'Ru',
+                                },
+                            ]}
+                        />
+                        <p>Sabab:
+                            <input className='mx-2' onChange={(e) => {
+                                setFileBoolin(e.target.checked)
+                            }}
+                                   type="checkbox"/>
+                            file
+                        </p>
+                        {
+                            fileBoolin ?
+                                <input className='form-control' type="file" accept="application/pdf"/>
+                                :
+                                <input className='form-control' type="text"/>
+                        }
+
+
+                        <p>Ariza:</p>
+                        <input className='form-control' type="file" accept="application/pdf"/>
+                    </Form>
+                )
+            }
+        }
+    }
     return (
         <>
             <Nav/>
@@ -172,118 +361,25 @@ function Ariza(props) {
                         <div className="right-side overflow-auto">
                             <h5>{t('give-reason-for-ttj')}</h5>
                             <Segmented onChange={(e) => {
-                                setLanguage(e)
+                                setStudent({...Student, applicationType: e})
                             }} block options={[
+
                                 {
-                                    label:`${t('til')}`,
-                                    value:true
+                                    label: `${t('direction')}`,
+                                    value: "CHANGE_SPECIALITY"
                                 },
                                 {
-                                    label:`${t('direction')}`,
-                                    value:false
+                                    label: `${t('recover')}`,
+                                    value: "RECOVER"
+                                },
+                                {
+                                    label: `${t('til')}`,
+                                    value: "CHANGE_LANG"
                                 },
                             ]}/>
 
                             <div className="container p-0">
-                                {language ?
-                                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
-                                          autoComplete="off">
-                                        <p>{t('faculty')}: <span>{Student.faculty}</span></p>
-                                        <p>{t('direction')}: <span>{Student.specialty}</span></p>
-
-                                        <p>{t('til')}:</p>
-                                        <Select
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                            onChange={handleChange}
-                                            allowClear
-                                            options={[
-                                                {
-                                                    value: 'Uz',
-                                                    label: 'uz',
-                                                },
-                                                {
-                                                    value: 'Ru',
-                                                    label: 'ru',
-                                                },
-                                            ]}
-                                        />
-                                    </Form>
-                                    :
-                                    <Form name="dynamic_form_nest_item" onFinish={onFinish}
-                                          autoComplete="off">
-                                        <p>{t('direction')}:</p>
-                                        <Select
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                            onChange={handleChange}
-                                            allowClear
-                                            options={[
-                                                {
-                                                    value: 'uz',
-                                                    label: 'Uz',
-                                                },
-                                                {
-                                                    value: 'ru',
-                                                    label: 'Ru',
-                                                },
-                                            ]}
-                                        />
-                                        <p>{t('talim-shakli')}:</p>
-                                        <Select
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                            onChange={handleChange}
-                                            allowClear
-                                            options={[
-                                                {
-                                                    value: 'uz',
-                                                    label: 'Uz',
-                                                },
-                                                {
-                                                    value: 'ru',
-                                                    label: 'Ru',
-                                                },
-                                            ]}
-                                        />
-                                        <p>{t('til')}:</p>
-                                        <Select
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                            onChange={handleChange}
-                                            allowClear
-                                            options={[
-                                                {
-                                                    value: 'uz',
-                                                    label: 'Uz',
-                                                },
-                                                {
-                                                    value: 'ru',
-                                                    label: 'Ru',
-                                                },
-                                            ]}
-                                        />
-                                        <p>Sabab:
-                                            <input className='mx-2' onChange={(e)=>{setFileBoolin(e.target.checked)}}
-                                                   type="checkbox"/>
-                                                   file
-                                        </p>
-                                        {
-                                            fileBoolin ?
-                                                <input className='form-control' type="file" accept="application/pdf"/>
-                                                :
-                                                <input className='form-control' type="text"/>
-                                        }
-
-
-                                        <p>Ariza:</p>
-                                        <input className='form-control' type="file" accept="application/pdf"/>
-                                    </Form>
-                                }
+                                {showForm()}
 
                             </div>
                             <div className="d-flex justify-content-center">
