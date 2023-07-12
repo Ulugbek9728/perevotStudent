@@ -8,6 +8,7 @@ import {useNavigate} from "react-router";
 import {toast} from "react-toastify";
 import Nav from "../component/nav";
 import Footer from "../component/footer";
+import ariza from "./Ариза переводга намуна.pdf"
 
 
 const onFinish = (values: any) => {
@@ -147,7 +148,7 @@ function Ariza(props) {
                           autoComplete="off">
                         <p>{t('faculty')}: <span>{Student.faculty}</span></p>
                         <p>{t('direction')}: <span>{Student.specialty}</span></p>
-                        <p>Transklip / zachyotka</p>
+                        <p>{t('Transklip')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                         <p>{t('til')}:</p>
                         <Select
@@ -165,7 +166,7 @@ function Ariza(props) {
                                     value: 'Ru',
                                     label: 'ru',
                                 },]}/>
-                        <p>Pasport nusxasini yuklang</p>
+                        <p>{t('pasport')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                         <p>Ariza:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
@@ -230,9 +231,9 @@ function Ariza(props) {
                                 },
                             ]}
                         />
-                        <p>Transklip / zachyotka</p>
+                        <p>{t('Transklip')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
-                        <p>Sabab:
+                        <p>{t('sabab')}:
                             <input className='mx-2' onChange={(e) => {
                                 setFileBoolin(e.target.checked)
                             }}
@@ -245,11 +246,11 @@ function Ariza(props) {
                                 :
                                 <input className='form-control' type="text"/>
                         }
-                        <p>Pasport nusxasini yuklang</p>
+                        <p>{t('pasport')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
 
 
-                        <p>Ariza:</p>
+                        <p>{t('ariza')}:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                     </Form>
                 )
@@ -312,9 +313,9 @@ function Ariza(props) {
                                 },
                             ]}
                         />
-                        <p>Transklip / zachyotka</p>
+                        <p>{t('Transklip')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
-                        <p>Sabab (file yoki text):
+                        <p>{t('sabab')}:
                             <input className='mx-2' onChange={(e) => {
                                 setFileBoolin(e.target.checked)}} type="checkbox"/>file
                         </p>
@@ -324,16 +325,68 @@ function Ariza(props) {
                                 :
                                 <input className='form-control' type="text"/>
                         }
-                        <p>Pasport nusxasini yuklang</p>
+                        <p>{t('pasport')}</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
 
-                        <p>Ariza:</p>
+                        <p>{t('ariza')}:</p>
                         <input className='form-control' type="file" accept="application/pdf"/>
                     </Form>
                 )
             }
         }
     }
+    const showInfo = () => {
+        switch (Student?.applicationType) {
+            case "CHANGE_LANG": {
+                return (
+                    <div>
+                        <p>1) {t('Transklip')}<span>{t('TransklipText')}</span></p>
+                        <p>2) {t('til')}<span>{t('tilText')}</span></p>
+                        <p>3) {t('sabab')}<span>{t('sababText')}</span></p>
+                        <p>4) {t('pasport')}<span>{t('pasportText')}</span></p>
+                        <p>5) {t('ariza')}
+                            <a href={ariza} target={"_blank"}> {t('namuna')}</a>
+                            <span>{t('arizaText')}</span>
+                        </p>
+                    </div>
+                )
+            }
+            case "CHANGE_SPECIALITY": {
+                return (
+                    <div>
+                        <p>1) {t('direction')}<span>{t('directionText')}</span></p>
+                        <p>2) {t('talim-shakli')}<span>{t('talim-shakliText')}</span></p>
+                        <p>3) {t('til')}<span>{t('tilText')}</span></p>
+                        <p>4) {t('Transklip')}<span>{t('TransklipText')}</span></p>
+                        <p>5) {t('sabab')}<span>{t('sababText')}</span></p>
+                        <p>6) {t('pasport')}<span>{t('pasportText')}</span></p>
+
+                        <p>7) {t('ariza')}
+                            <a href={ariza} target={"_blank"}> {t('namuna')}</a>
+                            <span>{t('arizaText')}</span>
+                        </p>
+                    </div>
+                )
+            }
+            case "RECOVER": {
+                return (
+                    <div>
+                        <p>1) {t('direction')}<span>{t('directionText')}</span></p>
+                        <p>2) {t('talim-shakli')}<span>{t('talim-shakliText')}</span></p>
+                        <p>3) {t('til')}<span>{t('tilText')}</span></p>
+                        <p>4) {t('Transklip')}<span>{t('TransklipText')}</span></p>
+                        <p>5) {t('sabab')}<span>{t('sababText1')}</span></p>
+                        <p>6) {t('pasport')}<span>{t('pasportText')}</span></p>
+
+                        <p>7) {t('ariza')}
+                            <a href={ariza} target={"_blank"}> {t('namuna')}</a>
+                            <span>{t('arizaText')}</span>
+                        </p>
+                    </div>
+                )
+            }
+        }
+    };
     return (
         <>
             <Nav/>
@@ -388,39 +441,8 @@ function Ariza(props) {
                                     value: "CHANGE_LANG"
                                 },
                             ]}/>
-
                             <h5 className="mt-4">TALABALAR UCHUN YO‘RIQNOMA</h5>
-                            <p>
-                                {t('direction')}
-                                <span>
-                                    O‘zi o‘qigan ta’lim yo’nalishi yoki unga turdosh bo’lgan ta’lim yo’nalishini tanlash;
-                                </span>
-                            </p>
-                            <p>
-                                {t('talim-shakli')}
-                                <span>
-                                    Sirtqi, kunduzgi va kechki ta’lim shakllaridan birini tanlash;
-                                </span>
-                            </p>
-                            <p>
-                                {t('til')}
-                                <span>
-                                    Ta’lim tilini tanlash ya’ni o’zbek yoki rus tilini ta’nlash;
-                                </span>
-                            </p>
-                            <p>
-                                Sabab
-                                <span>
-                                    O’qishini ko’chirish sababi kiritiladi lozim
-                                    bo’lsa korxona tomonidan olingan xatni ilova sifati kiritiladi;
-                                </span>
-                            </p>
-                            <p>
-                                Pasport nusxasini yuklash
-                                <span>
-                                   Talabaning shaxsini tasdiqlovchi pasport nusxasini yuklanadi;
-                                </span>
-                            </p>
+                            {showInfo()}
                         </div>
 
                         <div className="right-side overflow-auto">
