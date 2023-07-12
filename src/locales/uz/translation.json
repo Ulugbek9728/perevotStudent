@@ -62,5 +62,11 @@
     "patronymic": "Iltimos sharif kiriting!",
     "login": "Iltimos login kiriting!",
     "faculty": "Iltimos fakultet tanlang!"
-  }
+  },
+  "UZBEK": "O‘zbek",
+  "RUSSIAN": "Rus",
+  "ENGLISH": "Ingliz",
+  "FULL_TIME": "Kunduzgi",
+  "PART_TIME": "Sirtqi",
+  "EVENING": "Kechki"
 }
