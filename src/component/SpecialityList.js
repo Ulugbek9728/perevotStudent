@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 import {Modal} from 'antd';
 import {useNavigate} from "react-router";
 import SpecialityAlternativeModal from "./modals/SpecialityAlternativeModal";
+import SpecialityAlternativeAddModal from "./modals/SpecialityAlternativeAddModal";
 
 const {confirm} = Modal;
 
@@ -25,6 +26,7 @@ const SpecialityList = () => {
     const [beginEditSpeciality, setBeginEditSpeciality] = useState(false);
     const [beginDeleteSpeciality, setBeginDeleteSpeciality] = useState(false);
     const [showAlternativeModal, setShowAlternativeModal] = useState(false);
+    const [showAlternativeAddModal, setShowAlternativeAddModal] = useState(false);
     const [isReload, setIsReload] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const showDeleteConfirm = (onOk) => {
@@ -47,7 +49,14 @@ const SpecialityList = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            render: (text) => <p>{text}</p>,
+            render: (text, record) => <p
+                onClick={() => {
+                    setCurrentItem(record)
+                    setShowAlternativeAddModal(true);
+                }}
+                style={{cursor: 'pointer'}}
+            >
+                {text}</p>,
         },
         {
             title: 'Tillar',
@@ -183,6 +192,9 @@ const SpecialityList = () => {
                     setData(map);
                     setBeginGetData(false);
                 }
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }, [isReload])
 
@@ -222,7 +234,6 @@ const SpecialityList = () => {
     }
 
     const editSpecialityOnOk = (body) => {
-        console.log(body)
         setBeginEditSpeciality(true);
         editSpeciality(formValue?.id, body)
             .then((res) => {
@@ -357,6 +368,18 @@ const SpecialityList = () => {
                 show={showAlternativeModal}
                 onClose={() => setShowAlternativeModal(false)}
                 onOk={() => setShowAlternativeModal(false)}/>
+
+            {showAlternativeAddModal && <SpecialityAlternativeAddModal
+                speciality={currentItem}
+                isReload={isReload}
+                setIsReload={setIsReload}
+                show={showAlternativeAddModal}
+                onClose={() => {
+                    setCurrentItem({});
+                    setShowAlternativeAddModal(false)
+                }}
+                onOk={() => setShowAlternativeAddModal(false)}
+            />}
         </div>
     );
 };

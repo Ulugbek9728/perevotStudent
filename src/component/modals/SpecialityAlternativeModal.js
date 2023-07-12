@@ -4,8 +4,9 @@ import {use} from "i18next";
 import {getAllSpecialityAlternative} from "../../utils/ApiHelper";
 
 const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
-    const [data,setData] = useState([]);
-    const [beginGetData,setBeginGetData] = useState(false);
+    const [data, setData] = useState([]);
+    const [beginGetData, setBeginGetData] = useState(false);
+
     const columns = [
         {
             title: 'Name',
@@ -54,10 +55,11 @@ const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
             ),
         },
     ];
+
     useEffect(() => {
         setBeginGetData(true)
         getAllSpecialityAlternative(speciality?.id)
-            .then((res) =>{
+            .then((res) => {
                 const map = res?.data?.map((item) => {
                     return {
                         id: item?.id,
@@ -70,6 +72,7 @@ const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
                 setBeginGetData(false);
             });
     }, [speciality?.id]);
+
     return (
         <>
             <Modal
