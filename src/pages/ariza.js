@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import "../asset/arizaPage.scss"
-import {Button, Form, Input, Segmented, Select, Spin} from 'antd';
+import {Button, Form, Input, Segmented, Select} from 'antd';
 import {useNavigate} from "react-router";
 import {toast} from "react-toastify";
 import Nav from "../component/nav";
@@ -161,6 +161,7 @@ function Ariza(props) {
                 setIsLoading(false);
             });
     }
+
     const postStudent = (values: any) => {
         setIsLoading(true);
         console.log(values)
@@ -235,10 +236,6 @@ function Ariza(props) {
         }
     };
 
-    const handleChangeLen = (value) => {
-        setStudent({...Student, changeLanguage: value});
-    };
-
     useEffect(() => {
         const languages = specialityList
             ?.filter((item) => item.id === Student?.changeSpecialtyID)
@@ -275,6 +272,7 @@ function Ariza(props) {
 
         setFiles([...files]);
     }
+
     const showForm = () => {
         // eslint-disable-next-line default-case
         switch (Student?.applicationType) {
@@ -694,51 +692,90 @@ function Ariza(props) {
             }
             case "RECOVER": {
                 return (
-                    <Form name="dynamic_form_nest_item"
-                          onFinish={postStudent}
-                          autoComplete="off"
+                    <Form
+                        form={formChangeSpeciality}
+                        name="dynamic_form_nest_item"
+                        onFinish={postStudent}
+                        autoComplete="off"
+                        fields={[
+                            {
+                                name: 'phone',
+                                value: Student?.phone
+                            },
+                            {
+                                name: 'changeSpecialtyID',
+                                value: Student?.changeSpecialtyID
+                            },
+                            {
+                                name: 'newEducationForm',
+                                value: Student?.newEducationForm
+                            },
+                            {
+                                name: 'newEducationLang',
+                                value: Student?.newEducationLang
+                            },
+                            {
+                                name: 'recordBookId'
+                            },
+                        ]}
                     >
+
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Telefon raqam kiritilishi shart!',
+                                    whitespace: true,
+                                    max: 12,
+                                    min: 12
                                 }
                             ]}
+                            name="phone"
                         >
                             <p>{t('phone')}:
-                                <br/>
-                                <input onChange={(e) => {
-                                    setStudent({
-                                        ...Student, phone: e.target.value
-                                    })
-                                }}
-                                       className='form-control' type="number"/>
+                                <Input
+                                    placeholder="Telefon raqam kiriting..."
+                                    onChange={(e) => {
+                                        setStudent({
+                                            ...Student, phone: e.target.value
+                                        })
+                                    }}
+                                    className='form-control'
+                                    type="number"
+                                    size="large"
+                                />
                             </p>
                         </Form.Item>
+
                         <p>1) {t('direction')}:</p>
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Yonalish tanlash kerak!'
                                 }
                             ]}
+                            name="changeSpecialtyID"
                         >
+
                             <Select
+                                placeholder={t('direction')}
+                                name="changeSpecialtyID"
                                 style={{
                                     width: "100%",
                                 }}
-                                onChange={handleChangeLen}
+                                value={Student?.changeSpecialtyID}
+                                onChange={(e) => {
+                                    setStudent({...Student, changeSpecialtyID: e})
+                                }}
+
                                 allowClear
-                                options={[
-                                    {
-                                        value: 'uz',
-                                        label: 'Uz',
-                                    },
-                                    {
-                                        value: 'ru',
-                                        label: 'Ru',
-                                    },
-                                ]}
+                                options={specialityList?.map((item) => {
+                                    return {
+                                        value: item?.id,
+                                        label: item.name
+                                    }
+                                })}
                             />
                         </Form.Item>
 
@@ -746,26 +783,22 @@ function Ariza(props) {
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Talim shakli tanlanishi kerak!'
                                 }
                             ]}
+                            name="newEducationForm"
                         >
                             <Select
+                                placeholder={t('talim-shakli')}
                                 style={{
                                     width: "100%",
                                 }}
-                                onChange={handleChangeLen}
+                                onChange={(e) => {
+                                    setStudent({...Student, newEducationForm: e})
+                                }}
                                 allowClear
-                                options={[
-                                    {
-                                        value: 'uz',
-                                        label: 'Uz',
-                                    },
-                                    {
-                                        value: 'ru',
-                                        label: 'Ru',
-                                    },
-                                ]}
+                                options={specialityForms}
                             />
                         </Form.Item>
 
@@ -773,26 +806,22 @@ function Ariza(props) {
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Ta\'lim tilini tanlash shart!'
                                 }
                             ]}
+                            name="newEducationLang"
                         >
                             <Select
                                 style={{
                                     width: "100%",
                                 }}
-                                onChange={handleChangeLen}
+                                placeholder={t('til')}
+                                onChange={(e) => {
+                                    setStudent({...Student, newEducationLang: e})
+                                }}
                                 allowClear
-                                options={[
-                                    {
-                                        value: 'uz',
-                                        label: 'Uz',
-                                    },
-                                    {
-                                        value: 'ru',
-                                        label: 'Ru',
-                                    },
-                                ]}
+                                options={specialityLang}
                             />
                         </Form.Item>
 
@@ -800,53 +829,109 @@ function Ariza(props) {
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Transklip / zachyotka file tanlanishi kerak!'
                                 }
                             ]}
+                            name="recordBookId"
                         >
-                            <input className='form-control' type="file" accept="application/pdf"/>
+                            <input
+                                onChange={(e) => {
+                                    handleFile('recordBookId', e.target.files[0])
+                                }}
+                                className='form-control'
+                                type="file"
+                                accept="application/pdf"
+                            />
                         </Form.Item>
-                        <Form.Item>
-                            <p>5) {t('sabab')}:
-                                <input className='mx-2' onChange={(e) => {
+                        <p>5) {t('sabab')}:
+                            <input
+
+                                className='mx-2'
+                                defaultValue={false}
+                                onChange={(e) => {
                                     setFileBoolin(e.target.checked)
-                                }} type="checkbox"/>file
-                            </p>
+                                }}
+                                type="checkbox"
+                            />
+                            File
+                        </p>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true,
+                                    message: `Sabab ${fileBoolin ? 'file tanlanishi kerak' : 'yozilishi kerak'}`
+                                }
+                            ]}
+                            name={fileBoolin ? "reasonFileId" : "reasonText"}
+                        >
                             {
                                 fileBoolin ?
-                                    <input className='form-control' type="file" accept="application/pdf"/>
+                                    <input name="reasonFileId"
+                                           className='form-control'
+                                           type="file"
+                                           accept="application/pdf"
+                                           onChange={(e) => {
+                                               handleFile('reasonFileId', e.target.files[0])
+                                           }}
+                                    />
                                     :
-                                    <input className='form-control' type="text"/>
+                                    <input
+                                        name="reasonText"
+                                        className='form-control'
+                                        type="text"
+                                        onChange={(e) => {
+                                            setStudent({...Student, reasonText: e.target.value})
+                                        }}
+                                    />
                             }
                         </Form.Item>
-
                         <p>6) {t('pasport')}</p>
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Passport rasmini tanlang!'
                                 }
                             ]}
                             name="passportPhotoId"
                         >
-                            <input className='form-control' type="file" accept="application/pdf"/>
+                            <input
+                                onChange={(e) => {
+                                    handleFile('passportPhotoId', e.target.files[0])
+                                }}
+                                className='form-control'
+                                type="file"
+                                accept="application/pdf"
+                            />
                         </Form.Item>
+
 
                         <p>7) {t('ariza')}:</p>
                         <Form.Item
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Ariza yuklanishi kerak!'
+                                    message: "Ariza yuklash kerak!"
                                 }
                             ]}
                             name="applicationFileId"
                         >
-                            <input className='form-control' type="file" accept="application/pdf"/>
+                            <input
+                                onChange={(e) => {
+                                    handleFile('applicationFileId', e.target.files[0])
+                                }}
+                                className='form-control'
+                                type="file"
+                                accept="application/pdf"
+                            />
                         </Form.Item>
-
                         <Form.Item className='d-flex justify-content-center mt-3'>
-                            <Button className='signUp' htmlType="submit">{t('send')}</Button>
+                            <Button
+                                className='signUp'
+                                loading={isLoading}
+                                htmlType="submit"
+                            >{t('send')}</Button>
                         </Form.Item>
                     </Form>
                 )
