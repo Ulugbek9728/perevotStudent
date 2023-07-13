@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "../asset/printInfo.scss"
 import {useTranslation} from "react-i18next";
 
@@ -32,10 +32,19 @@ export const PrintInfo = React.forwardRef((props, ref) => {
                 <div className="title">{t('direction')}:</div>
                 <div className="text">Texnologik mashinalar va jihozlar (neftgaz sanoati mashina va jihozlari)</div>
 
-                <div className="title">{t('talim-shakli')}:</div>
+                <div className="title">{t('directionChangariza')}:</div>
+                <div className="text">Texnologik mashinalar va jihozlar (neftgaz sanoati mashina va jihozlari)</div>
+
+                <div className="title"> {t('talim-shakli')}:</div>
+                <div className="text">Kunduzgi</div>
+
+                <div className="title">{t('talim-shakliСhangariza')}:</div>
                 <div className="text">Kunduzgi</div>
 
                 <div className="title">{t('talim-tili')}:</div>
+                <div className="text">O‘zbek</div>
+
+                <div className="title">{t('talim-tiliChangariza')}:</div>
                 <div className="text">O‘zbek</div>
 
                 <div className="title">{t('talim-turi')}:</div>
