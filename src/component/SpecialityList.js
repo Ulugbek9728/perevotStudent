@@ -255,7 +255,7 @@ const SpecialityList = () => {
                 setBeginEditSpeciality(false);
             })
     }
-
+//{n}
     return (
         <div>
             <Form

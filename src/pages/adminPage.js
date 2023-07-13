@@ -95,7 +95,7 @@ function AdminPage(props) {
                       }}
                       items={[
                           {
-                              label: "Menu 1",
+                              label: "Arizachilar ro'yxati",
                               key: "1",
                               icon: <UserAddOutlined/>
                           },

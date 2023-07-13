@@ -1,6 +1,5 @@
 import axios from "axios";
 import {ApiName1} from "../APIname1";
-import async from "async";
 
 export const getAllSpeciality = async (setBeginGetData) => {
     try {
@@ -135,4 +134,30 @@ export const studentCreate = async (body) => {
                 }
             })
 
+}
+
+export const getStudentInfoAll = async (lan) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .post(`${ApiName1}/api/student/filter/admin`, {type:lan}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .catch((e)=>{console.log(e)});
+    } catch (e) {console.log(e)}
+}
+export const deleteStudent = async (id) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .delete(`${ApiName1}/api/student/delete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    } catch (e) {
+        console.log(e)
+    }
 }
