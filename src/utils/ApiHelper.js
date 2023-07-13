@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ApiName1} from "../APIname1";
+import async from "async";
 
 export const getAllSpeciality = async (setBeginGetData) => {
     try {
@@ -103,4 +104,35 @@ export const getAlternativePublicList = async (name) => {
     } catch (e) {
         console.log(e)
     }
+}
+
+export const uploadFile = async (files) => {
+    const formData = new FormData();
+    for (let file of files) {
+        formData.append(file?.key, file?.value);
+    }
+    try {
+        return await axios
+            .post(`${ApiName1}/api/attach/upload`,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+    } catch (err) {
+
+    }
+}
+export const studentCreate = async (body) => {
+
+    return await axios
+        .post(`${ApiName1}/api/student/public/join`,
+            body,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
 }
