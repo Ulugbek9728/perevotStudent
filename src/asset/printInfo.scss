@@ -1,4 +1,12 @@
 $mainColor: #418C61;
+
+.natija{
+
+  .down{
+    display:flex;
+    margin: 20px auto !important;
+  }
+}
 .printInfo {
   width: 80%;
   height: auto;
@@ -58,10 +66,59 @@ $mainColor: #418C61;
     }
   }
 }
-.natija{
 
-  .down{
-    display:flex;
-    margin: 20px auto !important;
+@media (max-width: 768px) {
+  .natija{
+    .printInfo {
+      width: 95%;
+      padding: 15px;
+      background-size: 100px;
+      background-position: right 5% top 50px;
+
+      .Ariza{
+        font-size: 20px;
+      }
+
+      .top{
+        .userIcon {
+          width: 100px;
+          height: 120px;
+        }
+        .box{
+          .FullName{
+            width: 70%;
+            font-size: 16px;
+          }
+          .id{
+            margin-top: 5px;
+            b{
+              margin-right: 10px;
+            }
+          }
+        }
+
+      }
+
+      .boxInfo{
+        margin-top: 20px;
+      }
+    }
+    .down{
+      margin: 20px auto !important;
+    }
+  }
+}
+@media (max-width: 450px) {
+  .printInfo{
+    background-image: none;
+    .top {
+      .box{
+        .FullName{
+          width: 100% !important;
+          margin: 0;
+        }
+      }
+    }
+
   }
 }
