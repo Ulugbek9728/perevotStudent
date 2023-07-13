@@ -104,3 +104,29 @@ export const getAlternativePublicList = async (name) => {
         console.log(e)
     }
 }
+
+export const getStudentInfoAll = async (lan) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .post(`${ApiName1}/api/student/filter/admin`, {type:lan}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .catch((e)=>{console.log(e)});
+    } catch (e) {console.log(e)}
+}
+export const deleteStudent = async (id) => {
+    try {
+        const token = localStorage.getItem('token');
+        return await axios
+            .delete(`${ApiName1}/api/student/delete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    } catch (e) {
+        console.log(e)
+    }
+}
