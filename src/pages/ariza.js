@@ -30,13 +30,12 @@ function Ariza(props) {
             district: "",
             phone: "",
             oldEducationForm: '',
-            newEducationForm: '',
+            newEducationForm: null,
             oldEducationLang: '',
-            newEducationLang: '',
+            newEducationLang: null,
             oldEducationType: '',
-            newEducationType: '',
+            newEducationType: null,
             applicationType: 'CHANGE_SPECIALITY',
-            changeLanguage: '',
             PNFL: '',
             changeSpecialtyID: null,
             reasonFileId: null,
@@ -110,8 +109,62 @@ function Ariza(props) {
 
     }
 
+    const postStudentCallAPI = (body) => {
+        studentCreate(body)
+            .then((res) => {
+                console.log(res)
+                if (res?.status === 201 || res?.status === 200) {
+                    toast.success("Successful!");
+                    localStorage.setItem('token', res?.data?.jwt)
+                    formChangeSpeciality.resetFields();
+                    setFiles([]);
+                    setStudent({
+                        ...Student,
+                        name: "",
+                        login: "",
+                        imageUrl: "",
+                        specialty: "",
+                        group: "",
+                        gender: "",
+                        faculty: "",
+                        course: "",
+                        country: "",
+                        city: "",
+                        district: "",
+                        phone: "",
+                        oldEducationForm: '',
+                        newEducationForm: '',
+                        oldEducationLang: '',
+                        newEducationLang: '',
+                        oldEducationType: '',
+                        newEducationType: '',
+                        changeLanguage: '',
+                        PNFL: '',
+                        changeSpecialtyID: null,
+                        reasonFileId: null,
+                        reasonText: '',
+                        passportPhotoId: null,
+                        applicationFileId: null,
+                    });
+                    navigate('/Result')
+                } else {
+                    toast.error(res?.message);
+                }
+                setIsLoading(false)
+            })
+            .catch((err) => {
+                if (err?.response?.status === 400) {
+                    toast.error(err?.response?.data)
+                } else if (err?.response?.status === 401) {
+                    navigate('/')
+                }
+                setIsLoading(false);
+            });
+    }
     const postStudent = (values: any) => {
         setIsLoading(true);
+        console.log(values)
+        // eslint-disable-next-line default-case
         switch (Student?.applicationType) {
             case "CHANGE_SPECIALITY": {
                 setStudent({
@@ -138,56 +191,7 @@ function Ariza(props) {
 
                             setStudent(updatedStudent);
 
-                            studentCreate(Student)
-                                .then((res) => {
-                                    console.log(res)
-                                    if (res?.status === 201 || res?.status === 200) {
-                                        toast.success("Successful!");
-                                        localStorage.setItem('token', res?.data?.jwt)
-                                        formChangeSpeciality.resetFields();
-                                        setFiles([]);
-                                        setStudent({
-                                            ...Student,
-                                            name: "",
-                                            login: "",
-                                            imageUrl: "",
-                                            specialty: "",
-                                            group: "",
-                                            gender: "",
-                                            faculty: "",
-                                            course: "",
-                                            country: "",
-                                            city: "",
-                                            district: "",
-                                            phone: "",
-                                            oldEducationForm: '',
-                                            newEducationForm: '',
-                                            oldEducationLang: '',
-                                            newEducationLang: '',
-                                            oldEducationType: '',
-                                            newEducationType: '',
-                                            changeLanguage: '',
-                                            PNFL: '',
-                                            changeSpecialtyID: null,
-                                            reasonFileId: null,
-                                            reasonText: '',
-                                            passportPhotoId: null,
-                                            applicationFileId: null,
-                                        });
-                                        navigate('/Result')
-                                    } else {
-                                        toast.error(res?.message);
-                                    }
-                                    setIsLoading(false)
-                                })
-                                .catch((err) => {
-                                    if (err?.response?.status === 400) {
-                                        toast.error(err?.response?.data)
-                                    } else if (err?.response?.status === 401) {
-                                        navigate('/')
-                                    }
-                                    setIsLoading(false);
-                                });
+                            postStudentCallAPI(Student)
                         }
                     })
                     .catch((err) => {
@@ -196,12 +200,37 @@ function Ariza(props) {
                     });
 
             }
+            // eslint-disable-next-line no-fallthrough
             case "CHANGE_LANG": {
                 setStudent({
                     ...Student,
                     phone: '+' + values?.phone,
                     newEducationLang: values?.newEducationLang,
                 });
+
+                uploadFile(files)
+                    .then((res) => {
+                        if (res?.status === 200) {
+                            const data = res?.data;
+                            let updatedStudent = {...Student};
+
+
+                            data?.forEach((item) => {
+                                updatedStudent = {
+                                    ...updatedStudent,
+                                    [item?.attachType]: item?.id
+                                }
+                            });
+
+                            setStudent(updatedStudent);
+
+                            postStudentCallAPI(Student);
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        setIsLoading(false);
+                    })
             }
         }
     };
@@ -268,19 +297,19 @@ function Ariza(props) {
                             ]}
                             name="phone"
                         >
-                                <p>{t('phone')}:
-                                    <Input
-                                        placeholder="Telefon raqam kiriting..."
-                                        onChange={(e) => {
-                                            setStudent({
-                                                ...Student, phone: e.target.value
-                                            })
-                                        }}
-                                        className='form-control'
-                                        type="number"
-                                        size="large"
-                                    />
-                                </p>
+                            <p>{t('phone')}:
+                                <Input
+                                    placeholder="Telefon raqam kiriting..."
+                                    onChange={(e) => {
+                                        setStudent({
+                                            ...Student, phone: e.target.value
+                                        })
+                                    }}
+                                    className='form-control'
+                                    type="number"
+                                    size="large"
+                                />
+                            </p>
                         </Form.Item>
 
                         <p>1) {t('Transklip')}</p>
@@ -294,6 +323,9 @@ function Ariza(props) {
                             name="recordBookId"
                         >
                             <input
+                                onChange={(e) => {
+                                    handleFile('recordBookId', e.target.files[0])
+                                }}
                                 className='form-control'
                                 type="file"
                                 accept="application/pdf"
@@ -314,36 +346,56 @@ function Ariza(props) {
                                 style={{
                                     width: "100%",
                                 }}
-                                onChange={handleChangeLen}
                                 allowClear
                                 options={[
                                     {
-                                        value: 'Uz',
-                                        label: 'uz',
+                                        value: 'UZBEK',
+                                        label: t('UZBEK'),
                                     },
                                     {
-                                        value: 'Ru',
-                                        label: 'ru',
+                                        value: 'ENGLISH',
+                                        label: t('ENGLISH'),
                                     },
-                                ]
-                                }
+                                    {
+                                        value: 'RUSSIAN',
+                                        label: t('RUSSIAN'),
+                                    },
+                                ]}
+                                onChange={(e) => {
+                                    setStudent({...Student, newEducationLang: e})
+                                }}
                             />
                         </Form.Item>
-                        <Form.Item>
-                            <p>3) {t('sabab')}:
-                                <input
-                                    className='mx-2'
-                                    onChange={(e) => {
-                                        setFileBoolin(e.target.checked)
-                                    }}
-                                    type="checkbox"/>
-                                file
-                            </p>
+                        <p>3) {t('sabab')}:
+                            <input
+                                className='mx-2'
+                                onChange={(e) => {
+                                    setFileBoolin(e.target.checked)
+                                }}
+                                type="checkbox"/>
+                            file
+                        </p>
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true,
+                                    message: `Sabab ${fileBoolin ? 'file tanlanishi kerak' : 'yozilishi kerak'}`
+                                }
+                            ]}
+                            name={fileBoolin ? "reasonFileId" : "reasonText"}
+                        >
                             {
                                 fileBoolin ?
-                                    <input className='form-control' type="file" accept="application/pdf"/>
+                                    <input
+                                        onChange={(e) => {
+                                            handleFile('reasonFileId', e.target.files[0])
+                                        }}
+                                        name="reasonFileId"
+                                        className='form-control'
+                                        type="file"
+                                        accept="application/pdf"/>
                                     :
-                                    <input className='form-control' type="text"/>
+                                    <input name="reasonText" className='form-control' type="text"/>
                             }
                         </Form.Item>
 
@@ -351,11 +403,19 @@ function Ariza(props) {
                         <Form.Item
                             rules={[
                                 {
-                                    required: true
+                                    required: true,
+                                    message: 'Passport rasmini tanlang!'
                                 }
                             ]}
+                            name="passportPhotoId"
                         >
-                            <input className='form-control' type="file" accept="application/pdf"/>
+                            <input
+                                onChange={(e) => {
+                                    handleFile('passportPhotoId', e.target.files[0])
+                                }}
+                                className='form-control'
+                                type="file"
+                                accept="application/pdf"/>
                         </Form.Item>
 
                         <p>5) {t('ariza')}:</p>
@@ -363,16 +423,25 @@ function Ariza(props) {
                             rules={
                                 [
                                     {
-                                        required: true
+                                        required: true,
+                                        message: 'Ariza yuklash kerak!'
                                     }
                                 ]
                             }
+                            name="applicationFileId"
                         >
-                            <input className='form-control' type="file" accept="application/pdf"/>
+                            <input
+                                onChange={(e) => {
+                                    handleFile('applicationFileId', e.target.files[0])
+                                }}
+                                className='form-control' type="file" accept="application/pdf"/>
                         </Form.Item>
 
                         <Form.Item className='d-flex justify-content-center mt-3'>
-                            <Button className='signUp' htmlType="submit">{t('send')}</Button>
+                            <Button
+                                className='signUp'
+                                htmlType="submit"
+                            >{t('send')}</Button>
                         </Form.Item>
                     </Form>
                 )
@@ -758,7 +827,7 @@ function Ariza(props) {
                                     required: true
                                 }
                             ]}
-                            name="passportFileId"
+                            name="passportPhotoId"
                         >
                             <input className='form-control' type="file" accept="application/pdf"/>
                         </Form.Item>
