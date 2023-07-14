@@ -103,7 +103,6 @@ function Ariza(props) {
                     })
             }).catch((error) => {
             navigate("/");
-            console.log(error);
         })
 
     }
@@ -287,7 +286,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Telefon raqam kiritilishi shart!',
+                                    message: t('required.phone'),
                                     whitespace: true,
                                     max: 12,
                                     min: 12
@@ -297,7 +296,7 @@ function Ariza(props) {
                         >
                             <p>{t('phone')}:
                                 <Input
-                                    placeholder="Telefon raqam kiriting..."
+                                    placeholder={t('place-holder.phone')}
                                     onChange={(e) => {
                                         setStudent({
                                             ...Student, phone: e.target.value
@@ -315,7 +314,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Transklip / zachyotka file tanlanishi kerak!'
+                                    message: t('required.file')
                                 }
                             ]}
                             name="recordBookId"
@@ -335,7 +334,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Ta\'lim tilini tanlash shart!'
+                                    message: t('place-holder.lang')
                                 }
                             ]}
                             name="newEducationLang"
@@ -377,7 +376,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: `Sabab ${fileBoolin ? 'file tanlanishi kerak' : 'yozilishi kerak'}`
+                                    message: `${fileBoolin ? t('required.file') : t('required.reasonText')}`
                                 }
                             ]}
                             name={fileBoolin ? "reasonFileId" : "reasonText"}
@@ -407,7 +406,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Passport rasmini tanlang!'
+                                    message: t('required.file')
                                 }
                             ]}
                             name="passportPhotoId"
@@ -427,7 +426,7 @@ function Ariza(props) {
                                 [
                                     {
                                         required: true,
-                                        message: 'Ariza yuklash kerak!'
+                                        message: t('required.file')
                                     }
                                 ]
                             }
@@ -483,7 +482,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Telefon raqam kiritilishi shart!',
+                                    message: t('required.phone'),
                                     whitespace: true,
                                     max: 12,
                                     min: 12
@@ -493,7 +492,7 @@ function Ariza(props) {
                         >
                             <p>{t('phone')}:
                                 <Input
-                                    placeholder="Telefon raqam kiriting..."
+                                    placeholder={t('place-holder.phone')}
                                     onChange={(e) => {
                                         setStudent({
                                             ...Student, phone: e.target.value
@@ -511,7 +510,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Yonalish tanlash kerak!'
+                                    message: t('place-holder.speciality')
                                 }
                             ]}
                             name="changeSpecialtyID"
@@ -543,7 +542,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Talim shakli tanlanishi kerak!'
+                                    message: t('place-holder.form')
                                 }
                             ]}
                             name="newEducationForm"
@@ -566,7 +565,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Ta\'lim tilini tanlash shart!'
+                                    message: t('place-holder.lang')
                                 }
                             ]}
                             name="newEducationLang"
@@ -589,7 +588,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Transklip / zachyotka file tanlanishi kerak!'
+                                    message: t('required.file')
                                 }
                             ]}
                             name="recordBookId"
@@ -619,7 +618,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: `Sabab ${fileBoolin ? 'file tanlanishi kerak' : 'yozilishi kerak'}`
+                                    message: ` ${fileBoolin ? t('required.file') : t('required.reasonText')}`
                                 }
                             ]}
                             name={fileBoolin ? "reasonFileId" : "reasonText"}
@@ -650,7 +649,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Passport rasmini tanlang!'
+                                    message: t('required.file')
                                 }
                             ]}
                             name="passportPhotoId"
@@ -671,7 +670,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Ariza yuklash kerak!"
+                                    message: t('required.file')
                                 }
                             ]}
                             name="applicationFileId"
@@ -729,7 +728,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Telefon raqam kiritilishi shart!',
+                                    message: t('required.phone'),
                                     whitespace: true,
                                     max: 12,
                                     min: 12
@@ -739,7 +738,7 @@ function Ariza(props) {
                         >
                             <p>{t('phone')}:
                                 <Input
-                                    placeholder="Telefon raqam kiriting..."
+                                    placeholder={t('place-holder.phone')}
                                     onChange={(e) => {
                                         setStudent({
                                             ...Student, phone: e.target.value
@@ -757,7 +756,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Yonalish tanlash kerak!'
+                                    message: t('place-holder.speciality')
                                 }
                             ]}
                             name="changeSpecialtyID"
@@ -789,7 +788,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Talim shakli tanlanishi kerak!'
+                                    message: t('place-holder.form')
                                 }
                             ]}
                             name="newEducationForm"
@@ -812,7 +811,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Ta\'lim tilini tanlash shart!'
+                                    message: t('place-holder.lang')
                                 }
                             ]}
                             name="newEducationLang"
@@ -835,7 +834,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Transklip / zachyotka file tanlanishi kerak!'
+                                    message: t('required.file')
                                 }
                             ]}
                             name="recordBookId"
@@ -865,7 +864,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: `Sabab ${fileBoolin ? 'file tanlanishi kerak' : 'yozilishi kerak'}`
+                                    message: `${fileBoolin ? t('required.file') : t('required.reasonText')}`
                                 }
                             ]}
                             name={fileBoolin ? "reasonFileId" : "reasonText"}
@@ -896,7 +895,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Passport rasmini tanlang!'
+                                    message: t('required.file')
                                 }
                             ]}
                             name="passportPhotoId"
@@ -917,7 +916,7 @@ function Ariza(props) {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Ariza yuklash kerak!"
+                                    message: t('required.file')
                                 }
                             ]}
                             name="applicationFileId"
@@ -1048,7 +1047,7 @@ function Ariza(props) {
                                     },
                                 ]}/>
 
-                            <h5 className="mt-4">TALABALAR UCHUN YO‘RIQNOMA</h5>
+                            <h5 className="mt-4">{t('documentation-for-student')}</h5>
                             {showInfo()}
                         </div>
 

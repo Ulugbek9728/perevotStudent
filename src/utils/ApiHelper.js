@@ -136,15 +136,23 @@ export const studentCreate = async (body) => {
 
 }
 
-export const getStudentInfoAll = async (lan) => {
+export const getStudentInfoAll = async (lan, query) => {
     try {
         const token = localStorage.getItem('token');
         return await axios
-            .post(`${ApiName1}/api/student/filter/admin`, {type: lan}, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
+            .post(`${ApiName1}/api/student/filter/admin`,
+                {
+                    type: lan,
+                    name: query
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    params: {
+                        page: 0,
+                        size: 1500
+                    }
+                })
             .catch((e) => {
                 console.log(e)
             });
@@ -168,7 +176,23 @@ export const deleteStudent = async (id) => {
 export const aboutMe = async () => {
     const token = localStorage.getItem('token');
     return await axios
-        .post(`${ApiName1}/api/student/me`, {},{headers: {
+        .post(`${ApiName1}/api/student/me`, {}, {
+            headers: {
                 'Authorization': `Bearer ${token}`
-            }});
+            }
+        });
+}
+
+
+export const getStudentInfoAllForExcel = async () => {
+    const token = localStorage.getItem('token');
+    return await axios
+        .post(`${ApiName1}/api/student/all/admin`, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .catch((e) => {
+            console.log(e)
+        });
 }

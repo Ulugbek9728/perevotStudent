@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Modal, Select, Table,} from "antd";
-import {deleteStudent, getStudentInfoAll} from "../utils/ApiHelper";
+import {Button, Input, Modal, Select, Table,} from "antd";
+import {deleteStudent, getStudentInfoAll, getStudentInfoAllForExcel} from "../utils/ApiHelper";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 import {ApiName1} from "../APIname1";
 import {DeleteOutlined, ExclamationCircleFilled} from "@ant-design/icons";
+import {exportToCSVData} from "../utils/ExcelCreator";
 
 
 const {confirm} = Modal;
@@ -29,6 +30,8 @@ function Menu1(props) {
     const [Students, setStudents] = useState([]);
     const [beginGetData, setBeginGetData] = useState(false);
     const [message2, setMessage2] = useState('');
+    const [searchValue, setSearchValue] = useState(null);
+
 
     const columns = [
         {
@@ -122,9 +125,9 @@ function Menu1(props) {
         },
         {
             title: 'Sabab',
-            dataIndex: 'reasonText' ,
-            key: 'reasonText' ,
-            render: (text,record) => {
+            dataIndex: 'reasonText',
+            key: 'reasonText',
+            render: (text, record) => {
                 return (
                     record?.reasonFileUrl ?
                         <a href={`${ApiName1}${record?.reasonFileUrl}`} target="_blank">Sabab</a> :
@@ -179,9 +182,12 @@ function Menu1(props) {
     };
     useEffect(() => {
         notify();
-        getStudent()
         setMessage2('')
     }, [message2]);
+
+    useEffect(() => {
+        getStudent(null, searchValue)
+    }, [searchValue])
 
     function notify() {
         if (message2 !== '') {
@@ -189,9 +195,9 @@ function Menu1(props) {
         }
     }
 
-    function getStudent(e) {
+    function getStudent(e = null, query) {
         setBeginGetData(true)
-        getStudentInfoAll(e)
+        getStudentInfoAll(e,query)
             .then((res) => {
                     setBeginGetData(false)
                     if (res?.status === 200) {
@@ -211,16 +217,48 @@ function Menu1(props) {
             );
     }
 
+    const exportExcel = () => {
+        getStudentInfoAllForExcel()
+            .then((res) => {
+                if (res?.status === 200) {
+                    exportToCSVData(res?.data, 'arizalar')
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                toast.error("Malumotlarni yuklashda xatolik!")
+            })
+
+    }
     return (
         <div>
+            <Input
+                allowClear
+                size='middle'
+                placeHolder="ID, F.I.SH..."
+                className="mx-2"
+                style={{width: 500}}
+                onChange={(e) => {
+                    setSearchValue(e.target.value)
+                }}
+            />
             <Select
+                className="my-2"
                 size={"middle"}
-                onSelect={(value) => getStudent(value)}
+                onSelect={(value) => getStudent(value,searchValue)}
                 style={{
                     width: 500,
                 }}
+                allowClear
                 placeholder="Ariza turini tanlang.."
                 options={languagesOptions}/>
+
+            <Button
+                size="middle"
+                className="mx-2"
+                type="primary"
+                onClick={exportExcel}
+            >Ma'lumotlarni yuklab olish</Button>
             <Table
                 loading={beginGetData}
                 dataSource={Students}

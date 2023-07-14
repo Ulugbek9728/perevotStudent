@@ -64,8 +64,17 @@
     "surname": "Iltimos familya kiriting!",
     "patronymic": "Iltimos sharif kiriting!",
     "login": "Iltimos login kiriting!",
-    "faculty": "Iltimos fakultet tanlang!"
+    "faculty": "Iltimos fakultet tanlang!",
+    "phone": "Telefonni kiritish shart",
+    "reasonText": "Sabab kiritish shart."
   },
+  "place-holder": {
+    "phone": "Telefon raqamingizni kiriting..",
+    "speciality": "Yo'nalishni tanlang!",
+    "form": "Ta'lim shaklini tanlang!",
+    "lang": "Ta'lim tilini tanlang!"
+  },
+  "documentation-for-student": "TALABALAR UCHUN YO‘RIQNOMA",
   "UZBEK": "O‘zbek",
   "RUSSIAN": "Rus",
   "ENGLISH": "Ingliz",

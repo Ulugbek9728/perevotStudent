@@ -21,7 +21,7 @@ export const PrintInfo = React.forwardRef((props, ref) => {
                 navigate('/')
             })
     }, []);
-    console.log(student)
+
     return (
         <div ref={ref} className='printInfo'>
             <div className="Ariza">{t("result")}</div>
@@ -36,7 +36,7 @@ export const PrintInfo = React.forwardRef((props, ref) => {
                         <b>ID:</b>{student?.id}
                     </div>
                     <div className="id">
-                        <b>Jins:</b> {student?.gender}
+                        <b>{t('gender')}:</b> {student?.gender}
                     </div>
                 </div>
             </div>
