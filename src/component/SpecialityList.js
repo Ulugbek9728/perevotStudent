@@ -7,10 +7,12 @@ import {Modal} from 'antd';
 import {useNavigate} from "react-router";
 import SpecialityAlternativeModal from "./modals/SpecialityAlternativeModal";
 import SpecialityAlternativeAddModal from "./modals/SpecialityAlternativeAddModal";
+import {useTranslation} from "react-i18next";
 
 const {confirm} = Modal;
 
 const SpecialityList = () => {
+    const {t} = useTranslation();
 
     const [formValue, setFormValue] = useState({
         id: '',
@@ -71,7 +73,7 @@ const SpecialityList = () => {
                         }
                         return (
                             <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+                                {t(tag)}
                             </Tag>
                         );
                     })}
@@ -91,7 +93,7 @@ const SpecialityList = () => {
                         }
                         return (
                             <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+                                {t(tag)}
                             </Tag>
                         );
                     })}
@@ -255,7 +257,7 @@ const SpecialityList = () => {
                 setBeginEditSpeciality(false);
             })
     }
-//{n}
+
     return (
         <div>
             <Form

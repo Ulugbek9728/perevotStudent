@@ -1,66 +1,89 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "../asset/printInfo.scss"
 import {useTranslation} from "react-i18next";
+import {aboutMe} from "../utils/ApiHelper";
+import {useNavigate} from "react-router";
 
 
 export const PrintInfo = React.forwardRef((props, ref) => {
     const {t} = useTranslation();
+    const [student, setStudent] = useState({});
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        aboutMe()
+            .then((res) => {
+                if (res?.status === 200) {
+                    setStudent(res?.data);
+                }
+            })
+            .catch((err) => {
+                navigate('/')
+            })
+    }, []);
+    console.log(student)
     return (
         <div ref={ref} className='printInfo'>
             <div className="Ariza">{t("result")}</div>
             <div className="top">
                 <img className='userIcon'
-                     src="https://sites.temple.edu/listen/files/2015/10/qian-headshot-3x4.jpg" alt=""/>
+                     src={student?.imageUrl} alt=""/>
                 <div className="box">
                     <div className='FullName'>
-                        Islom Abdug'aniyevich Karimovhjjk
+                        {student?.name}
                     </div>
                     <div className="id">
-                        <b>ID:</b>89465132453
+                        <b>ID:</b>{student?.id}
                     </div>
                     <div className="id">
-                        <b>Jins:</b> Erkak
+                        <b>Jins:</b> {student?.gender}
                     </div>
                 </div>
             </div>
             <div className="line"/>
             <div className="boxInfo">
                 <div className="title">{t('faculty')}:</div>
-                <div className="text">Neft va gaz fakulteti</div>
+                <div className="text">{student?.faculty}</div>
 
                 <div className="title">{t('direction')}:</div>
-                <div className="text">Texnologik mashinalar va jihozlar (neftgaz sanoati mashina va jihozlari)</div>
+                <div className="text">{student?.specialty}</div>
 
-                <div className="title">{t('directionChangariza')}:</div>
-                <div className="text">Texnologik mashinalar va jihozlar (neftgaz sanoati mashina va jihozlari)</div>
+                {student?.changeSpecialty &&
+                    <>
+                        <div className="title">{t('directionChangariza')}:</div>
+                        <div className="text">{student?.changeSpecialty?.name}</div>
+                    </>
+                }
 
                 <div className="title"> {t('talim-shakli')}:</div>
-                <div className="text">Kunduzgi</div>
-
-                <div className="title">{t('talim-shakliСhangariza')}:</div>
-                <div className="text">Kunduzgi</div>
+                <div className="text">{student?.oldEducationForm}</div>
+                {student?.newEducationForm &&
+                    <>
+                        <div className="title">{t('talim-shakliСhangariza')}:</div>
+                        <div className="text">{t(student?.newEducationForm)}</div>
+                    </>
+                }
 
                 <div className="title">{t('talim-tili')}:</div>
-                <div className="text">O‘zbek</div>
+                <div className="text">{student?.oldEducationLanguage}</div>
 
                 <div className="title">{t('talim-tiliChangariza')}:</div>
-                <div className="text">O‘zbek</div>
+                <div className="text">{t(student?.newEducationLanguage)}</div>
 
                 <div className="title">{t('talim-turi')}:</div>
-                <div className="text">Bakalavr</div>
+                <div className="text">{student?.oldEducationLanguage}</div>
 
                 <div className="title">{t('course')}:</div>
-                <div className="text">1-kurs</div>
+                <div className="text">{student?.course}</div>
 
                 <div className="title">{t('group')}:</div>
-                <div className="text">45-21 TMJ(ngsmj)(o')</div>
+                <div className="text">{student?.group}</div>
 
                 <div className="title">{t('address')}:</div>
-                <div className="text">O‘zbekiston Buxoro viloyati G‘ijduvon tumani</div>
+                <div className="text">{student?.country + ',' + student?.city + ',' + student?.district}</div>
 
                 <div className="title">{t('phone')}:</div>
-                <div className="text">+998900354140</div>
+                <div className="text">+{student?.phone}</div>
             </div>
 
         </div>

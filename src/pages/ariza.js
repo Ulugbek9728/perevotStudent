@@ -34,7 +34,6 @@ function Ariza(props) {
             oldEducationLang: '',
             newEducationLang: null,
             oldEducationType: '',
-            newEducationType: null,
             applicationType: 'CHANGE_SPECIALITY',
             PNFL: '',
             changeSpecialtyID: null,
@@ -165,7 +164,6 @@ function Ariza(props) {
     const postStudent = (values: any) => {
         setIsLoading(true);
         console.log(values)
-        // eslint-disable-next-line default-case
         switch (Student?.applicationType) {
             case "CHANGE_SPECIALITY": {
                 setStudent({
@@ -192,17 +190,17 @@ function Ariza(props) {
 
                             setStudent(updatedStudent);
 
-                            postStudentCallAPI(Student)
+                            postStudentCallAPI(updatedStudent)
                         }
                     })
                     .catch((err) => {
                         console.log(err);
                         setIsLoading(false)
                     });
-
+                return;
             }
             // eslint-disable-next-line no-fallthrough
-            case "CHANGE_LANG": {
+            default : {
                 setStudent({
                     ...Student,
                     phone: '+' + values?.phone,
@@ -225,13 +223,15 @@ function Ariza(props) {
 
                             setStudent(updatedStudent);
 
-                            postStudentCallAPI(Student);
+                            postStudentCallAPI(updatedStudent);
                         }
                     })
                     .catch((err) => {
                         console.log(err);
                         setIsLoading(false);
                     })
+
+                return;
             }
         }
     };
@@ -393,7 +393,12 @@ function Ariza(props) {
                                         type="file"
                                         accept="application/pdf"/>
                                     :
-                                    <input name="reasonText" className='form-control' type="text"/>
+                                    <input
+                                        onChange={(e) => {
+                                            setStudent({...Student, reasonText: e.target.value})
+                                        }}
+                                        name="reasonText"
+                                        className='form-control' type="text"/>
                             }
                         </Form.Item>
 

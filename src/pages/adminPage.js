@@ -20,6 +20,7 @@ function AdminPage(props) {
     const navigate = useNavigate();
     const [sucsessText, setSucsessText] = useState('');
     const [message, setMessage] = useState('');
+    const [selectedValue, setSelectedValue] = useState(window.location.pathname.split('/')[2] === ''? '1' :window.location.pathname.split('/')[2]);
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [NewPassword, setNewPassword] = useState({});
@@ -84,13 +85,15 @@ function AdminPage(props) {
                 position: 'fixed', left: 0, top: 0, bottom: 0,
             }}>
                 <div style={{height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)',}}/>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={[selectedValue]}
                       onClick={(into) => {
                           if (into.key === "1") {
+                              setSelectedValue("1")
                               navigate("/Adminyoli/");
                           }
                           if (into.key === "2") {
                               navigate("/Adminyoli/2");
+                              setSelectedValue("2")
                           }
                       }}
                       items={[
@@ -100,7 +103,7 @@ function AdminPage(props) {
                               icon: <UserAddOutlined/>
                           },
                           {
-                              label: "Menu 2",
+                              label: "Yonalishlar",
                               key: "2",
                               icon: <UserAddOutlined/>
                           },

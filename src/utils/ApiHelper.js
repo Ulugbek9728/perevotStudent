@@ -140,13 +140,17 @@ export const getStudentInfoAll = async (lan) => {
     try {
         const token = localStorage.getItem('token');
         return await axios
-            .post(`${ApiName1}/api/student/filter/admin`, {type:lan}, {
+            .post(`${ApiName1}/api/student/filter/admin`, {type: lan}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             })
-            .catch((e)=>{console.log(e)});
-    } catch (e) {console.log(e)}
+            .catch((e) => {
+                console.log(e)
+            });
+    } catch (e) {
+        console.log(e)
+    }
 }
 export const deleteStudent = async (id) => {
     try {
@@ -160,4 +164,11 @@ export const deleteStudent = async (id) => {
     } catch (e) {
         console.log(e)
     }
+}
+export const aboutMe = async () => {
+    const token = localStorage.getItem('token');
+    return await axios
+        .post(`${ApiName1}/api/student/me`, {},{headers: {
+                'Authorization': `Bearer ${token}`
+            }});
 }

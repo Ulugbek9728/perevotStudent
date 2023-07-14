@@ -109,8 +109,8 @@ const SpecialityAlternativeAddModal = ({show, onClose, onOk, speciality, setIsRe
                                         value: item?.id,
                                     }
                                 })}
-                            >
-                            </Select>
+                            />
+
                         </Form.Item>
 
                         <Form.Item>
@@ -119,8 +119,8 @@ const SpecialityAlternativeAddModal = ({show, onClose, onOk, speciality, setIsRe
                                     type="primary"
                                     danger
                                     onClick={() => {
-                                        form.resetFields();
                                         setSpecialityList([]);
+                                        form.resetFields();
                                         onClose();
                                     }}
                                     size={"default"}

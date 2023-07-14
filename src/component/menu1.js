@@ -35,7 +35,7 @@ function Menu1(props) {
             title: 'Rasm',
             dataIndex: 'imageUrl',
             key: 'imageUrl',
-            render:(text)=> <img style={{width:100}} src={text} alt=""/>
+            render: (text) => <img style={{width: 100}} src={text} alt=""/>
         },
         {
             title: 'FISH',
@@ -44,11 +44,11 @@ function Menu1(props) {
         },
         {
             title: "O'qiyotgan",
-            children:[
+            children: [
                 {
-                    title:"Fakultet",
+                    title: "Fakultet",
                     dataIndex: 'faculty',
-                    key:"faculty"
+                    key: "faculty"
                 },
                 {
                     title: "Yo'nalishi",
@@ -59,36 +59,36 @@ function Menu1(props) {
                     title: "Ta'lim shakli",
                     dataIndex: 'oldEducationForm',
                     key: 'oldEducationForm',
-                    render:(text)=><div>{t(text)}</div>
+                    render: (text) => <div>{t(text)}</div>
                 },
                 {
                     title: "Til",
                     dataIndex: 'oldEducationLanguage',
                     key: 'oldEducationLanguage',
-                    render:(text)=><div>{t(text)}</div>
+                    render: (text) => <div>{t(text)}</div>
                 },
             ]
         },
         {
             title: "Ko'chirmoqchi bo'lgan",
-            children:[
+            children: [
                 {
                     title: "Yo'nalishi",
                     dataIndex: 'changeSpecialty',
                     key: 'changeSpecialty',
-                    render:(record)=> <div>{record.name}</div>
+                    render: (record) => <div>{record.name}</div>
                 },
                 {
                     title: "Ta'lim shakli",
                     dataIndex: 'newEducationForm',
                     key: 'newEducationForm',
-                    render:(text)=><div>{t(text)}</div>
+                    render: (text) => <div>{t(text)}</div>
                 },
                 {
                     title: "Til",
                     dataIndex: 'newEducationLanguage',
                     key: 'newEducationLanguage',
-                    render:(text)=><div>{t(text)}</div>
+                    render: (text) => <div>{t(text)}</div>
                 },
             ]
         },
@@ -106,19 +106,31 @@ function Menu1(props) {
             title: 'Ariza',
             dataIndex: 'applicationFileUrl',
             key: 'applicationFileUrl',
-            render:(text)=> <a href={`${ApiName1}${text}`} target="_blank">Ariza</a>
+            render: (text) => <a href={`${ApiName1}${text}`} target="_blank">Ariza</a>
         },
         {
             title: 'Pasport nusxasi',
             dataIndex: 'passportPhotoUrl',
             key: 'passportPhotoUrl',
-            render:(text)=> <a href={`${ApiName1}${text}`} target="_blank">Passport</a>
+            render: (text) => <a href={`${ApiName1}${text}`} target="_blank">Passport</a>
         },
         {
             title: 'Transklip',
             dataIndex: 'recordBookUrl',
             key: 'recordBookUrl',
-            render:(text)=> <a href={`${ApiName1}${text}`} target="_blank">Transklip</a>
+            render: (text) => <a href={`${ApiName1}${text}`} target="_blank">Transklip</a>
+        },
+        {
+            title: 'Sabab',
+            dataIndex: 'reasonText' ,
+            key: 'reasonText' ,
+            render: (text,record) => {
+                return (
+                    record?.reasonFileUrl ?
+                        <a href={`${ApiName1}${record?.reasonFileUrl}`} target="_blank">Sabab</a> :
+                        text
+                )
+            }
         },
         {
             title: 'Davlat',
@@ -139,7 +151,7 @@ function Menu1(props) {
             title: '',
             dataIndex: 'id',
             key: 'id',
-            render:(text)=> <Button
+            render: (text) => <Button
                 size="small"
                 type="dashed"
                 onClick={() => showDeleteConfirm(() => deletStudent(text))}
@@ -181,12 +193,10 @@ function Menu1(props) {
         setBeginGetData(true)
         getStudentInfoAll(e)
             .then((res) => {
-
                     setBeginGetData(false)
-                if (res?.status===200){
-                    console.log(res.data.content);
-                    setStudents(res.data.content)
-                }
+                    if (res?.status === 200) {
+                        setStudents(res.data.content)
+                    }
                 }
             );
     }
@@ -194,12 +204,13 @@ function Menu1(props) {
     function deletStudent(id) {
 
         deleteStudent(id)
-                .then((res) => {
-                        console.log(res);
-                        setMessage2("Talaba o'chirildi")
-                    }
-                );
+            .then((res) => {
+                    console.log(res);
+                    setMessage2("Talaba o'chirildi")
+                }
+            );
     }
+
     return (
         <div>
             <Select
@@ -214,9 +225,9 @@ function Menu1(props) {
                 loading={beginGetData}
                 dataSource={Students}
                 columns={columns}
-                pagination={{ pageSize: 50}}
-                scroll={{ x: 500, }}
-                bordered />
+                pagination={{pageSize: 50}}
+                scroll={{x: 500,}}
+                bordered/>
         </div>
     );
 }
