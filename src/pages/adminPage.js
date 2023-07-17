@@ -103,7 +103,7 @@ function AdminPage(props) {
                               icon: <UserAddOutlined/>
                           },
                           {
-                              label: "Yonalishlar",
+                              label: "Yo'nalishlar",
                               key: "2",
                               icon: <UserAddOutlined/>
                           },

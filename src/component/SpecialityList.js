@@ -48,7 +48,11 @@ const SpecialityList = () => {
 
     const columns = [
         {
-            title: 'Name',
+            title: '№',
+            render: (text, record, index) => index + 1,
+        },
+        {
+            title: 'Nomi',
             dataIndex: 'name',
             key: 'name',
             render: (text, record) => <p
@@ -101,8 +105,8 @@ const SpecialityList = () => {
             ),
         },
         {
-            title: 'Action',
-            key: 'action',
+            title: 'Turdoshlari',
+            key: 'turdoshlari',
             render: (_, record) => (
                 <Space size="middle">
                     <Button
@@ -113,8 +117,16 @@ const SpecialityList = () => {
                             setShowAlternativeModal(true);
                         }}
                     >
-                        Show Alternative
+                        Ko'rish
                     </Button>
+                </Space>
+            ),
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => (
+                <Space size="middle">
                     <Button
                         className="border-0"
                         size="small"
@@ -291,7 +303,7 @@ const SpecialityList = () => {
                 onFinish={isEdit ? editSpecialityOnOk : addSpecialityOnSubmit}
             >
                 <Form.Item
-                    label="Name"
+                    label="Nomi"
                     name="name"
                     placeholder="Turdosh yonalishlarni tanlang.."
                     rules={[
@@ -358,7 +370,7 @@ const SpecialityList = () => {
                 </Form.Item>
             </Form>
 
-            <Divider>Speciality List</Divider>
+            <Divider>Yo'nalishlar ro'yxati</Divider>
 
             <Table
                 loading={beginGetData}
