@@ -81,7 +81,7 @@ const SpecialityList = () => {
             ),
         },
         {
-            title: 'Oquv shakli',
+            title: 'O\'quv shakli',
             key: 'forms',
             dataIndex: 'forms',
             render: (_, {forms}) => (
@@ -328,7 +328,7 @@ const SpecialityList = () => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label="Oquv shakli"
+                    label="O'quv shakli"
                     name="educationForms"
                     rules={[
                         {

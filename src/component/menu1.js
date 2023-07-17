@@ -35,13 +35,18 @@ function Menu1(props) {
 
     const columns = [
         {
+            title: 'Id',
+            dataIndex: 'id',
+            key: 'id'
+        },
+        {
             title: 'Rasm',
             dataIndex: 'imageUrl',
             key: 'imageUrl',
             render: (text) => <img style={{width: 100}} src={text} alt=""/>
         },
         {
-            title: 'FISH',
+            title: 'F.I.Sh',
             dataIndex: 'name',
             key: 'name',
         },

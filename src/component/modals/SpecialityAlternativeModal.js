@@ -2,8 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Modal, Table, Tag} from "antd";
 import {use} from "i18next";
 import {getAllSpecialityAlternative} from "../../utils/ApiHelper";
+import {useTranslation} from "react-i18next";
 
 const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
+    const {t} = useTranslation();
+
     const [data, setData] = useState([]);
     const [beginGetData, setBeginGetData] = useState(false);
 
@@ -27,7 +30,7 @@ const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
                         }
                         return (
                             <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+                                {t(tag)}
                             </Tag>
                         );
                     })}
@@ -35,7 +38,7 @@ const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
             ),
         },
         {
-            title: 'Oquv shakli',
+            title: 'O\'quv shakli',
             key: 'forms',
             dataIndex: 'forms',
             render: (_, {forms}) => (
@@ -47,7 +50,7 @@ const SpecialityAlternativeModal = ({show, onClose, onOk, speciality}) => {
                         }
                         return (
                             <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+                                {t(tag)}
                             </Tag>
                         );
                     })}
