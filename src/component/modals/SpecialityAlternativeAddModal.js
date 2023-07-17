@@ -10,6 +10,7 @@ const SpecialityAlternativeAddModal = ({show, onClose, onOk, speciality, setIsRe
     const [data, setData] = useState([]);
     const [beginGetData, setBeginGetData] = useState(false);
     const [specialityList, setSpecialityList] = useState([]);
+    const [optionsList, setOptionsList] = useState([]);
 
     useEffect(() => {
         setBeginGetData(true)
@@ -35,10 +36,18 @@ const SpecialityAlternativeAddModal = ({show, onClose, onOk, speciality, setIsRe
                 });
         }
     }, [speciality?.id]);
+
+    useEffect(() => {
+        setOptionsList(data?.map((item) => {
+            return {
+                value: item.id,
+                label: item.name
+            }
+        }))
+    }, [data]);
     const onSubmit = (body) => {
         addSpecialityAlternative({...body, toSpecialityId: speciality?.id})
             .then((res) => {
-                console.log(res)
                 if (res.status === 200) {
                     setIsReload(!isReload);
                     onClose();
@@ -97,18 +106,35 @@ const SpecialityAlternativeAddModal = ({show, onClose, onOk, speciality, setIsRe
                         >
                             <Label>Yo'nalishlar</Label>
                             <Select
+                                onSearch={(e) => {
+                                    if (e === '') {
+                                        setOptionsList(data?.map((item) => {
+                                            return {
+                                                value: item.id,
+                                                label: item.name
+                                            }
+                                        }))
+                                    }else {
+                                        setOptionsList(data
+                                            .filter((item) => {
+                                                return item?.name?.toLowerCase().startsWith(e?.toLowerCase())
+                                            })
+                                            .map((item) => {
+                                                return {
+                                                    label: item.name,
+                                                    value: item.name
+                                                }
+                                            }))
+                                    }
+
+                                }}
                                 allowClear
                                 onChange={(e) => setSpecialityList(e)}
                                 placeholder="Yo'nalishlarni tanlang..."
                                 mode="multiple"
                                 loading={beginGetData}
                                 value={specialityList}
-                                options={data?.map((item) => {
-                                    return {
-                                        label: item?.name,
-                                        value: item?.id,
-                                    }
-                                })}
+                                options={optionsList}
                             />
 
                         </Form.Item>

@@ -185,6 +185,7 @@ function Menu1(props) {
 
         });
     };
+
     useEffect(() => {
         notify();
         setMessage2('')

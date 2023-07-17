@@ -344,7 +344,7 @@ const SpecialityList = () => {
                         style={{
                             maxWidth: 600,
                         }}
-                        placeholder="Oquv shaklini tanlang.."
+                        placeholder="O'quv shaklini tanlang.."
                         options={formsOptions}
                         mode="multiple"
                     />
