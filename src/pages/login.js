@@ -92,9 +92,6 @@ Login(props) {
                                 {t("TTJxushKelibsiz")}
                             </p>
                             <p className="commit">
-                                {t("TTJeslatma")}
-                            </p>
-                            <p className="commit">
                                 <ul>
                                     <li>{t("eslatma1")}</li>
                                     <li>{t("eslatma2")}</li>
